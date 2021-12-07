@@ -1,8 +1,8 @@
-page 50104 "RCA Item Model"
+page 50104 "RCA Item Model list"
 {
 
-    Caption = 'RCA Item Model';
-    PageType = Card;
+    Caption = 'RCA Item Model list';
+    PageType = List;
     SourceTable = "RCA Item Model";
 
     layout

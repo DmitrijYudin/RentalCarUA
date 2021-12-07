@@ -1,7 +1,7 @@
 table 50108 "RCA Item Model"
 {
     Caption = 'RCA Item Model';
-    DataClassification = ToBeClassified;
+    //DataClassification = ToBeClassified;
 
     fields
     {
