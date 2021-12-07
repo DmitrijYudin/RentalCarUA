@@ -1,4 +1,4 @@
-pageextension 50102 "RCA  Item Card Ext" extends "Item Card"
+pageextension 50202 "RCA  Item Card Ext" extends "Item Card"
 {
     Caption = 'RCA  Item Card Ext';
 

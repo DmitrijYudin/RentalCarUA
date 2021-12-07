@@ -1,4 +1,4 @@
-tableextension 50100 "RCA Item" extends Item
+tableextension 50200 "RCA Item" extends Item
 {
     Caption = 'RCA Item';
     fields
@@ -7,6 +7,7 @@ tableextension 50100 "RCA Item" extends Item
         {
             Caption = 'Model';
             DataClassification = CustomerContent;
+            TableRelation = "RCA Item Model";
         }
         field(50101; "RCA Color"; Code[20])
         {

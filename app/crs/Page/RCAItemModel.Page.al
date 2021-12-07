@@ -1,21 +1,18 @@
-page 50104 "RCA Item Model list"
+page 50204 "RCA Item Model"
 {
 
-    Caption = 'RCA Item Model list';
+    Caption = 'RCA Item Model';
     PageType = List;
     SourceTable = "RCA Item Model";
+    UsageCategory = Lists;
+    ApplicationArea = All;
 
     layout
     {
         area(content)
         {
-            group(General)
+            repeater(General)
             {
-                field("No."; Rec."No.")
-                {
-                    ToolTip = 'Specifies the value of the No. field.';
-                    ApplicationArea = All;
-                }
                 field(Model; Rec.Model)
                 {
                     ToolTip = 'Specifies the value of the Model field.';
