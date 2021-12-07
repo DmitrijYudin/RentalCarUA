@@ -1,8 +1,8 @@
 {
     "al.defaultLaunchConfigurationName": "Deploy",
-    "CRS.FileNamePattern": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
-    "CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
-    "CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePattern": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
+    "CRS.FileNamePatternExtensions": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
+    "CRS.FileNamePatternPageCustomizations": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
     "CRS.AlSubFolderName": "None",
     "CRS.OnSaveAlFileAction": "Rename",
     "CRS.ObjectNamePrefix": "RCA ",

@@ -1,5 +1,4 @@
 pageextension 50201 "RCA Item List Ext" extends "Item List"
-
 {
     Caption = 'RCA Item List Ext';
 

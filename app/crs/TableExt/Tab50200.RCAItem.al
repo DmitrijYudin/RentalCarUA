@@ -13,6 +13,7 @@ tableextension 50200 "RCA Item" extends Item
         {
             Caption = 'Color';
             DataClassification = CustomerContent;
+            TableRelation = "RCA Color";
         }
         field(50102; "RCA Mileage"; Integer)
         {
