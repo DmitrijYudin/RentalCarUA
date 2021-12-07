@@ -2,7 +2,7 @@
 // Remember that object names and IDs should be unique across all extensions.
 // AL snippets start with t*, like tpageext - give them a try and happy coding!
 
-pageextension 50100 "RSH CustomerListExt" extends "Customer List"
+pageextension 50100 "RCA RSH CustomerListExt" extends "Customer List"
 {
     trigger OnOpenPage();
     begin
