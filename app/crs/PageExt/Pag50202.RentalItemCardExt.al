@@ -1,26 +1,27 @@
-pageextension 50201 "RCA Item List Ext" extends "Item List"
+pageextension 50202 "Rental Item Card Ext" extends "Item Card"
 {
-    Caption = 'RCA Item List Ext';
+    Caption = 'Rental Item Card Ext';
 
     layout
     {
         addafter("No.")
         {
-            field("RCA Model"; Rec."RCA Model")
+            field("Rental Model"; Rec."Rental Model")
             {
                 Visible = true;
                 ApplicationArea = all;
             }
-            field("RCA Color"; Rec."RCA Color")
+            field("Rental Color"; Rec."Rental Color")
             {
                 Visible = true;
                 ApplicationArea = all;
             }
-            field("RCA Mileage"; Rec."RCA Mileage")
+            field("Rental Mileage"; Rec."Rental Mileage")
             {
                 Visible = true;
                 ApplicationArea = all;
             }
         }
     }
+
 }

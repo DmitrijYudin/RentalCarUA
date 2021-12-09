@@ -5,7 +5,7 @@
     "CRS.FileNamePatternPageCustomizations": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
     "CRS.AlSubFolderName": "None",
     "CRS.OnSaveAlFileAction": "Rename",
-    "CRS.ObjectNamePrefix": "RCA ",
+    "CRS.ObjectNamePrefix": "Rental ",
     "CRS.ObjectNameSuffix": "",
     "CRS.RemoveSuffixFromFilename": false,
     "CRS.RemovePrefixFromFilename": false,

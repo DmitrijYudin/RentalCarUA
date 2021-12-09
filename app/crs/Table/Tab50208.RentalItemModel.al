@@ -1,15 +1,15 @@
-table 50201 "RCA Color"
+table 50208 "Rental Item Model"
 {
-    Caption = 'RCA Color';
-    LookupPageId = "RCA Color";
-    DrillDownPageId = "RCA Color";
+    Caption = 'Rental Item Model';
+    LookupPageId = "Rental Item Model";
+    DrillDownPageId = "Rental Item Model";
     DataClassification = ToBeClassified;
 
     fields
     {
-        field(10; Color; Code[20])
+        field(10; Model; Code[20])
         {
-            Caption = 'Color';
+            Caption = 'Model';
             DataClassification = CustomerContent;
         }
         field(20; Discription; Text[250])
@@ -20,7 +20,7 @@ table 50201 "RCA Color"
     }
     keys
     {
-        key(PK; Color)
+        key(PK; Model)
         {
             Clustered = true;
         }

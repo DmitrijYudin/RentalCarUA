@@ -1,7 +1,7 @@
-page 50204 "RCA Item Model"
+page 50201 "Rental Color"
 {
-    Caption = 'RCA Item Model';
-    SourceTable = "RCA Item Model";
+    Caption = 'Rental Color';
+    SourceTable = "Rental Color";
     PageType = List;
     UsageCategory = Lists;
     ApplicationArea = All;
@@ -16,9 +16,9 @@ page 50204 "RCA Item Model"
         {
             repeater(General)
             {
-                field(Model; Rec.Model)
+                field(Color; Rec.Color)
                 {
-                    ToolTip = 'Specifies the value of the Model field.';
+                    ToolTip = 'Specifies the value of the Color field.';
                     ApplicationArea = All;
                 }
                 field(Discription; Rec.Discription)
