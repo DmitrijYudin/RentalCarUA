@@ -1,10 +1,11 @@
 page 50202 "Rental Sales Order"
 {
-
     Caption = 'Rental Sales Order';
     PageType = Card;
     SourceTable = "Rental Sales Header";
     PromotedActionCategories = 'New,Process,Report,Approve,Release,Posting,Prepare,Order,Request Approval,History,Print/Send,Navigate';
+    ApplicationArea = all;
+    UsageCategory = Lists;
 
     layout
     {
