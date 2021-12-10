@@ -1,7 +1,7 @@
 table 50203 "Rental Sales Line"
 {
     Caption = 'Rental Sales Line ';
-    DataClassification = ToBeClassified;
+    DataClassification = CustomerContent;
 
     fields
     {

@@ -14,7 +14,7 @@ table 50208 "Rental Item Model"
         }
         field(20; Discription; Text[250])
         {
-            Caption = 'Discription';
+            Caption = 'Description';
             DataClassification = CustomerContent;
         }
     }
