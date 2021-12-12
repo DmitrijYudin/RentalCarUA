@@ -1,12 +1,12 @@
-page 50205 "Rental Sales Order List"
+page 50205 "Rental Orders List"
 {
 
     ApplicationArea = All;
-    Caption = 'Rental Sales Order List';
+    Caption = 'Rental Orders List';
     PageType = List;
     SourceTable = "Rental Header";
     UsageCategory = Lists;
-    CardPageId = "Rental Sales Order";
+    CardPageId = "Rental Order";
     Editable = false;
 
     layout
@@ -15,15 +15,9 @@ page 50205 "Rental Sales Order List"
         {
             repeater(General)
             {
-
                 field("No."; Rec."No.")
                 {
                     ToolTip = 'Specifies the value of the No. field.', Comment = 'ESP="Code."';
-                    ApplicationArea = All;
-                }
-                field("No. Series"; Rec."No. Series")
-                {
-                    ToolTip = 'Specifies the value of the No. Series field.';
                     ApplicationArea = All;
                 }
                 field("Customer No."; Rec."Customer No.")
@@ -36,9 +30,24 @@ page 50205 "Rental Sales Order List"
                     ToolTip = 'Specifies the value of the Customer Name field.';
                     ApplicationArea = All;
                 }
-                field("Order Date"; Rec."Order Date")
+                field("Salesperson Code"; Rec."Salesperson Code")
                 {
-                    ToolTip = 'Specifies the value of the Order Date field.';
+                    ToolTip = 'Specifies the value of the Salesperson Code field.';
+                    ApplicationArea = All;
+                }
+                field("Document Date"; Rec."Document Date")
+                {
+                    ToolTip = 'Specifies the value of the Document Date field.';
+                    ApplicationArea = All;
+                }
+                field("Bill-to Address"; Rec."Bill-to Address")
+                {
+                    ToolTip = 'Specifies the value of the Bill-to Address field.';
+                    ApplicationArea = All;
+                }
+                field("Phone No."; Rec."Phone No.")
+                {
+                    ToolTip = 'Specifies the value of the Phone No. field.';
                     ApplicationArea = All;
                 }
             }

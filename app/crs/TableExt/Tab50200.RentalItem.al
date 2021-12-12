@@ -14,7 +14,7 @@ tableextension 50200 "Rental Item" extends Item
             begin
                 if not IsTemporary then
                     ItemAttributeManagement.InheritAttributesFromItemCategory(Rec, "Item Category Code", xRec."Item Category Code");
-                UpdateItemCategoryId;
+                UpdateItemCategoryId();
             end;
         }
 

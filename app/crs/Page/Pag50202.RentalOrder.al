@@ -1,6 +1,6 @@
-page 50202 "Rental Sales Order"
+page 50202 "Rental Order"
 {
-    Caption = 'Rental Sales Order';
+    Caption = 'Rental Order';
     PageType = Card;
     SourceTable = "Rental Header";
     //PromotedActionCategories = 'New,Process,Report,Approve,Release,Posting,Prepare,Order,Request Approval,History,Print/Send,Navigate';
@@ -13,7 +13,6 @@ page 50202 "Rental Sales Order"
         {
             group(General)
             {
-
                 field("No."; Rec."No.")
                 {
                     ToolTip = 'Specifies the value of the No. field.', Comment = 'ESP="Code."';
@@ -29,16 +28,27 @@ page 50202 "Rental Sales Order"
                     ToolTip = 'Specifies the value of the Customer Name field.';
                     ApplicationArea = All;
                 }
+                field("Bill-to Address"; Rec."Bill-to Address")
+                {
+                    ToolTip = 'Specifies the value of the Bill-to Address field.';
+                    ApplicationArea = All;
+                }
+                field("Phone No."; Rec."Phone No.")
+                {
+                    ToolTip = 'Specifies the value of the Phone No. field.';
+                    ApplicationArea = All;
+                }
                 field("Salesperson Code"; Rec."Salesperson Code")
                 {
                     ToolTip = 'Specifies the value of the Salesperson Code field.';
                     ApplicationArea = All;
                 }
-                field("Order Date"; Rec."Order Date")
+                field("Document Date"; Rec."Document Date")
                 {
-                    ToolTip = 'Specifies the value of the Order Date field.';
+                    ToolTip = 'Specifies the value of the Document Date field.';
                     ApplicationArea = All;
                 }
+
             }
             part(SalesLines; "Rental Line")
             {
@@ -46,6 +56,6 @@ page 50202 "Rental Sales Order"
                 SubPageLink = "No." = FIELD("No.");
             }
         }
-    }
 
+    }
 }
