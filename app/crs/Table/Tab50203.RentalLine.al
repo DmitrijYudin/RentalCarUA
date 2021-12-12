@@ -31,6 +31,7 @@ table 50203 "Rental Line"
         {
             Caption = 'No. ';
             DataClassification = CustomerContent;
+            TableRelation = Item."No.";
         }
         field(10; "Rental Model Line"; Code[20])
         {

@@ -28,17 +28,29 @@ table 50202 "Rental Header"
                 end;
             end;
         }
-        field(20; "Bill-to Customer No."; Code[20])
+
+        field(21; "Customer No."; Code[20])
         {
-            Caption = 'Bill-to Customer No.';
+            Caption = 'Customer No.';
             DataClassification = CustomerContent;
-            TableRelation = Customer."Bill-to Customer No.";
+            TableRelation = Customer."No.";
+
+            trigger OnValidate()
+            var
+                Customer: Record Customer;
+            begin
+                if "Customer No." <> '' then begin
+                    Customer.Get("Customer No.");
+                    Rec.Validate("Customer Name", Customer.Name);
+                end;
+            end;
         }
-        field(30; "Customer Name"; Code[20])
+        field(30; "Customer Name"; Text[100])
         {
             Caption = 'Customer Name';
             DataClassification = CustomerContent;
             TableRelation = Customer.Name;
+            Editable = false;
         }
         field(40; "Order Date"; Date)
         {
@@ -65,7 +77,7 @@ table 50202 "Rental Header"
     }
     keys
     {
-        key(PK; "No.")
+        key(PK; "No.", "Customer Name")
         {
             Clustered = true;
         }

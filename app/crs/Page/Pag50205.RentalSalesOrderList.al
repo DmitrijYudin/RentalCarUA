@@ -15,14 +15,20 @@ page 50205 "Rental Sales Order List"
         {
             repeater(General)
             {
+
                 field("No."; Rec."No.")
                 {
-                    ToolTip = 'Specifies the value of the No. field.';
+                    ToolTip = 'Specifies the value of the No. field.', Comment = 'ESP="Code."';
                     ApplicationArea = All;
                 }
-                field("Bill-to Customer No."; Rec."Bill-to Customer No.")
+                field("No. Series"; Rec."No. Series")
                 {
-                    ToolTip = 'Specifies the value of the Bill-to Customer No. field.';
+                    ToolTip = 'Specifies the value of the No. Series field.';
+                    ApplicationArea = All;
+                }
+                field("Customer No."; Rec."Customer No.")
+                {
+                    ToolTip = 'Specifies the value of the Customer No. field.';
                     ApplicationArea = All;
                 }
                 field("Customer Name"; Rec."Customer Name")
