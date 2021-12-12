@@ -5,11 +5,11 @@ table 50203 "Rental Sales Line"
 
     fields
     {
-        field(1; "Document Type"; Text[250])
-        {
-            Caption = 'Document Type';
-            DataClassification = ToBeClassified;
-        }
+        // field(1; "Document Type"; Text[250])
+        // {
+        //     Caption = 'Document Type';
+        //     DataClassification = ToBeClassified;
+        // }
         field(3; "Document No."; Code[20])
         {
             Caption = 'Document No.';
@@ -79,7 +79,7 @@ table 50203 "Rental Sales Line"
     }
     keys
     {
-        key(PK; "Document Type", "Document No.", "Line No.")
+        key(PK; "Document No.", "Line No.")
         {
             Clustered = true;
         }

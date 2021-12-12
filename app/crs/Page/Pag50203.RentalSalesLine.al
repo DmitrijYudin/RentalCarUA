@@ -12,11 +12,11 @@ page 50203 "Rental Sales Line"
         {
             repeater(General)
             {
-                field("Document Type"; Rec."Document Type")
-                {
-                    ToolTip = 'Specifies the value of the Document Type field.';
-                    ApplicationArea = All;
-                }
+                // field("Document Type"; Rec."Document Type")
+                // {
+                //     ToolTip = 'Specifies the value of the Document Type field.';
+                //     ApplicationArea = All;
+                // }
                 field("Document No."; Rec."Document No.")
                 {
                     ToolTip = 'Specifies the value of the Document No. field.';

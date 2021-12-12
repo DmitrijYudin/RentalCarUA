@@ -13,11 +13,11 @@ page 50202 "Rental Sales Order"
         {
             group(General)
             {
-                field("Document Type"; Rec."Document Type")
-                {
-                    ToolTip = 'Specifies the value of the Document Type field.';
-                    ApplicationArea = All;
-                }
+                // field("Document Type"; Rec."Document Type")
+                // {
+                //     ToolTip = 'Specifies the value of the Document Type field.';
+                //     ApplicationArea = All;
+                // }
                 field("Sell-to Customer No."; Rec."Sell-to Customer No.")
                 {
                     ToolTip = 'Specifies the value of the Sell-to Customer No. field.';

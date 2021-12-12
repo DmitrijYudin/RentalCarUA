@@ -6,23 +6,26 @@ pageextension 50202 "Rental Item Card Ext" extends "Item Card"
     {
         addafter("No.")
         {
+
             field("Rental Model"; Rec."Rental Model")
             {
-                Visible = true;
-                ApplicationArea = all;
-                ToolTip = 'Specifies the value of the Rental Model field.';
+                ToolTip = 'Specifies the value of the Car Model field.';
+                ApplicationArea = All;
             }
             field("Rental Color"; Rec."Rental Color")
             {
-                Visible = true;
-                ApplicationArea = all;
-                ToolTip = 'Specifies the value of the Rental Color field.';
+                ToolTip = 'Specifies the value of the Color field.';
+                ApplicationArea = All;
             }
             field("Rental Mileage"; Rec."Rental Mileage")
             {
-                Visible = true;
-                ApplicationArea = all;
-                ToolTip = 'Specifies the value of the Rental Mileage field.';
+                ToolTip = 'Specifies the value of the Mileage field.';
+                ApplicationArea = All;
+            }
+            field("Rental Manufacture year"; Rec."Rental Manufacture year")
+            {
+                ToolTip = 'Specifies the value of the Manufacture year field.';
+                ApplicationArea = All;
             }
         }
     }

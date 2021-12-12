@@ -5,11 +5,11 @@ table 50202 "Rental Sales Header"
 
     fields
     {
-        field(1; "Document Type"; Text[150])
-        {
-            Caption = 'Document Type';
-            DataClassification = CustomerContent;
-        }
+        // field(1; "Document Type"; Text[150])
+        // {
+        //     Caption = 'Document Type';
+        //     DataClassification = CustomerContent;
+        // }
         field(2; "Sell-to Customer No."; Code[20])
         {
             Caption = 'Sell-to Customer No.';
@@ -58,7 +58,7 @@ table 50202 "Rental Sales Header"
     }
     keys
     {
-        key(PK; "Document Type", "No.")
+        key(PK; "No.")
         {
             Clustered = true;
         }
