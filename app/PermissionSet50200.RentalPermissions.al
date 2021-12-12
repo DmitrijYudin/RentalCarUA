@@ -4,6 +4,7 @@ permissionset 50200 "Rental Permissions"
     Caption = 'Rental Settings Permision Set';
 
     Permissions =
-        tabledata "Rental Sales Header" = rimd,
-        tabledata "Rental Sales Line" = rimd;
+        tabledata "Rental Header" = rimd,
+        tabledata "Rental Line" = rimd,
+        tabledata "Rental Setup" = rimd;
 }
