@@ -105,6 +105,7 @@ table 50202 "Rental Header"
     trigger OnDelete()
     var
         RentalMgt: Codeunit "Rental Mgt.";
+    //RentalMgt: Report "Rental Mgt.";
     begin
         RentalMgt.DeleteRentalLine(Rec."No.");
     end;
