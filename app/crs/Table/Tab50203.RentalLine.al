@@ -85,11 +85,13 @@ table 50203 "Rental Line"
         {
             Caption = 'Rental Start Date';
             DataClassification = CustomerContent;
+            NotBlank = false;
         }
         field(54; "Rental End Date"; Date)
         {
             Caption = 'Rental End Date';
             DataClassification = CustomerContent;
+            NotBlank = false;
         }
         field(52; "Rental Duration"; Duration)
         {

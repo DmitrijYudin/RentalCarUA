@@ -3,6 +3,8 @@ page 50202 "Rental Order"
     Caption = 'Rental Order';
     PageType = Card;
     SourceTable = "Rental Header";
+    UsageCategory = Lists;
+    ApplicationArea = all;
     PromotedActionCategories = 'New,Process,Report,Approve,Release,Posting,Prepare,Order,Request Approval,History,Print/Send,Navigate';
     layout
     {
@@ -19,6 +21,14 @@ page 50202 "Rental Order"
                 {
                     ToolTip = 'Specifies the value of the Customer No. field.';
                     ApplicationArea = All;
+                    NotBlank = false;
+                }
+
+                field("Salesperson Code"; Rec."Salesperson Code")
+                {
+                    ToolTip = 'Specifies the value of the Salesperson Code field.';
+                    ApplicationArea = All;
+                    NotBlank = false;
                 }
                 field("Customer Name"; Rec."Customer Name")
                 {
@@ -35,11 +45,6 @@ page 50202 "Rental Order"
                     ToolTip = 'Specifies the value of the Phone No. field.';
                     ApplicationArea = All;
                 }
-                field("Salesperson Code"; Rec."Salesperson Code")
-                {
-                    ToolTip = 'Specifies the value of the Salesperson Code field.';
-                    ApplicationArea = All;
-                }
                 field(SystemModifiedAt; Rec.SystemModifiedAt)
                 {
                     ToolTip = 'Specifies the value of the SystemModifiedAt field.';
@@ -54,7 +59,7 @@ page 50202 "Rental Order"
                 SubPageLink = "Document No." = FIELD("No.");
                 UpdatePropagation = Both;
                 Editable = true;
-                Enabled = Rec."Customer No." <> '';
+                Enabled = (Rec."Customer No." <> '');
             }
         }
 

@@ -24,7 +24,6 @@ table 50202 "Rental Header"
                     TestNoSeries(RentalSetup);
                     NoSeriesMgt.TestManual(RentalSetup."Rental Nos.");
                     "No. Series" := '';
-
                 end;
             end;
         }
@@ -48,6 +47,7 @@ table 50202 "Rental Header"
             Caption = 'Customer No.';
             DataClassification = CustomerContent;
             TableRelation = Customer."No.";
+            NotBlank = true;
 
             trigger OnValidate()
             var
@@ -71,8 +71,9 @@ table 50202 "Rental Header"
         field(50; "Salesperson Code"; Code[20])
         {
             Caption = 'Salesperson Code';
-            DataClassification = ToBeClassified;
+            DataClassification = CustomerContent;
             TableRelation = "Salesperson/Purchaser";
+            NotBlank = true;
         }
 
         field(140; "No. Series"; Code[20])
@@ -80,22 +81,8 @@ table 50202 "Rental Header"
             Caption = 'No. Series';
             Editable = false;
             TableRelation = "No. Series";
+            DataClassification = CustomerContent;
         }
-
-        // field(99; "Document Date"; Date)
-        // {
-        //     Caption = 'Document Date';
-
-        //     trigger OnValidate()
-        //     begin
-        //         CalcQuoteValidUntilDate();
-        //     end;
-        // }
-        field(152; "Quote Valid Until Date"; Date)
-        {
-            Caption = 'Quote Valid To Date';
-        }
-
         // field(20; "Posting Date"; Date)
         // {
         //     Caption = 'Posting Date';

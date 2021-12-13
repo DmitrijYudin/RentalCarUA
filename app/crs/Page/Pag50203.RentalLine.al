@@ -6,8 +6,8 @@ page 50203 "Rental Line"
     SourceTable = "Rental Line";
     AutoSplitKey = true;
     MultipleNewLines = false;
-    // DelayedInsert = false;
-    // LinksAllowed = false;
+    DelayedInsert = true;
+    LinksAllowed = false;
     layout
     {
         area(content)
@@ -55,11 +55,13 @@ page 50203 "Rental Line"
                 {
                     ToolTip = 'Specifies the value of the Rental Start Date field.';
                     ApplicationArea = All;
+                    NotBlank = false;
                 }
                 field("Rental End Date"; Rec."Rental End Date")
                 {
                     ToolTip = 'Specifies the value of the Rental End Date field.';
                     ApplicationArea = All;
+                    NotBlank = false;
                 }
                 field("Rental Duration"; Rec."Rental Duration")
                 {
