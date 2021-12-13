@@ -54,7 +54,7 @@ page 50202 "Rental Order"
             part(SalesLines; "Rental Line")
             {
                 ApplicationArea = All;
-                SubPageLink = "No." = FIELD("No.");
+                SubPageLink = "Document No." = FIELD("No.");
             }
         }
 

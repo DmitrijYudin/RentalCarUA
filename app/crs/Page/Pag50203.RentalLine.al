@@ -4,7 +4,7 @@ page 50203 "Rental Line"
     Caption = 'Rental Line';
     PageType = ListPart;
     SourceTable = "Rental Line";
-    AutoSplitKey = true;
+    //AutoSplitKey = true;
 
     layout
     {
@@ -12,6 +12,11 @@ page 50203 "Rental Line"
         {
             repeater(General)
             {
+                field("Document No."; Rec."Document No.")
+                {
+                    ToolTip = 'Specifies the value of the Document No. field.';
+                    ApplicationArea = All;
+                }
 
                 field("No."; Rec."No.")
                 {
@@ -78,6 +83,7 @@ page 50203 "Rental Line"
                     ToolTip = 'Specifies the value of the Unit Price field.';
                     ApplicationArea = All;
                 }
+
             }
         }
     }
