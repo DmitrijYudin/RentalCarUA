@@ -46,6 +46,23 @@ table 50203 "Rental Line"
 
             //     end;
             // end;
+            trigger OnValidate()
+            var
+                Item: Record Item;
+            //ItemVariant: Record "Item Variant";
+            begin
+                if "No." <> '' then begin
+                    Item.Get(Item."No.");
+                    Rec.Validate("Rental Model Line", Item."Rental Model");
+                    Rec.Validate("Rental Mileage", item."Rental Mileage");
+                    Rec.Validate("Rental Manufacture year", item."Rental Manufacture year");
+                    Rec.Validate("Description", item."Description");
+
+                    //ItemVariant.Get(Item."No.");
+                    //Rec.Validate("Rental Color", ItemVariant.Code);
+                end;
+
+            end;
         }
         field(10; "Rental Model Line"; Code[20])
         {
@@ -75,7 +92,7 @@ table 50203 "Rental Line"
             TableRelation = Item."Rental Manufacture year";
             //Editable = false;
         }
-        field(11; Description; Text[250])
+        field(11; Description; Text[100])
         {
             Caption = 'Description';
             DataClassification = CustomerContent;
@@ -111,7 +128,7 @@ table 50203 "Rental Line"
     }
     keys
     {
-        key(PK; "No.", "Document No.")
+        key(PK; "No.", "Document No.", Description, "Rental Model Line", "Rental Mileage", "Rental Manufacture year", "Rental Color")
         {
             Clustered = true;
         }

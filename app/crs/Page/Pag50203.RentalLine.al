@@ -23,6 +23,23 @@ page 50203 "Rental Line"
                 {
                     ToolTip = 'Specifies the value of the No.  field.';
                     ApplicationArea = All;
+
+                    // trigger OnValidate()
+                    // var
+                    //     Item: Record Item;
+                    // //ItemVariant: Record "Item Variant";
+                    // begin
+                    //     if Rec."No." <> '' then begin
+                    //         //Item.Get(Item."No.");
+                    //         //ItemVariant.Get(Item."No.");
+                    //         Rec.Validate("Rental Model Line", Item."Rental Model");
+                    //         //Rec.Validate("Rental Color", ItemVariant.Code);
+                    //         Rec.Validate("Rental Mileage", item."Rental Mileage");
+                    //         Rec.Validate("Rental Manufacture year", item."Rental Manufacture year");
+                    //         Rec.Validate("Description", item."Description");
+                    //     end;
+                    // end;
+                    
                 }
                 field(Description; Rec.Description)
                 {
