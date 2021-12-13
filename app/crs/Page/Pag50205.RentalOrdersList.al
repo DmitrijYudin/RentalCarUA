@@ -35,11 +35,6 @@ page 50205 "Rental Orders List"
                     ToolTip = 'Specifies the value of the Salesperson Code field.';
                     ApplicationArea = All;
                 }
-                field("Document Date"; Rec."Document Date")
-                {
-                    ToolTip = 'Specifies the value of the Document Date field.';
-                    ApplicationArea = All;
-                }
                 field("Bill-to Address"; Rec."Bill-to Address")
                 {
                     ToolTip = 'Specifies the value of the Bill-to Address field.';

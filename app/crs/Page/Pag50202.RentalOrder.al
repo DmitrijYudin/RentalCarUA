@@ -43,9 +43,10 @@ page 50202 "Rental Order"
                     ToolTip = 'Specifies the value of the Salesperson Code field.';
                     ApplicationArea = All;
                 }
-                field("Document Date"; Rec."Document Date")
+                field(SystemModifiedAt; Rec.SystemModifiedAt)
                 {
-                    ToolTip = 'Specifies the value of the Document Date field.';
+                    ToolTip = 'Specifies the value of the SystemModifiedAt field.';
+                    Caption = 'Document Modified at';
                     ApplicationArea = All;
                 }
 

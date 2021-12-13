@@ -82,20 +82,20 @@ table 50202 "Rental Header"
             TableRelation = "No. Series";
         }
 
-        field(99; "Document Date"; Date)
-        {
-            Caption = 'Document Date';
+        // field(99; "Document Date"; Date)
+        // {
+        //     Caption = 'Document Date';
 
-            trigger OnValidate()
-            begin
-
-                CalcQuoteValidUntilDate();
-            end;
-        }
+        //     trigger OnValidate()
+        //     begin
+        //         CalcQuoteValidUntilDate();
+        //     end;
+        // }
         field(152; "Quote Valid Until Date"; Date)
         {
             Caption = 'Quote Valid To Date';
         }
+
         // field(20; "Posting Date"; Date)
         // {
         //     Caption = 'Posting Date';
@@ -148,13 +148,13 @@ table 50202 "Rental Header"
         //     Error(RadioShowNosErr, RadioShowSetup.FieldCaption("Radio Show Nos."), RadioShowSetup.TableCaption());
     end;
 
-    local procedure CalcQuoteValidUntilDate()
-    var
-        SalesReceivablesSetup: Record "Sales & Receivables Setup";
-        BlankDateFormula: DateFormula;
-    begin
-        SalesReceivablesSetup.Get();
-        if SalesReceivablesSetup."Quote Validity Calculation" <> BlankDateFormula then
-            "Quote Valid Until Date" := CalcDate(SalesReceivablesSetup."Quote Validity Calculation", "Document Date");
-    end;
+    // local procedure CalcQuoteValidUntilDate()
+    // var
+    //     SalesReceivablesSetup: Record "Sales & Receivables Setup";
+    //     BlankDateFormula: DateFormula;
+    // begin
+    //     SalesReceivablesSetup.Get();
+    //     if SalesReceivablesSetup."Quote Validity Calculation" <> BlankDateFormula then
+    //         "Quote Valid Until Date" := CalcDate(SalesReceivablesSetup."Quote Validity Calculation", "Document Date");
+    // end;
 }

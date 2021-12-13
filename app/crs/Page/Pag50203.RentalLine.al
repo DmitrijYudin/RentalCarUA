@@ -12,39 +12,30 @@ page 50203 "Rental Line"
         {
             repeater(General)
             {
-                // field("Document Type"; Rec."Document Type")
-                // {
-                //     ToolTip = 'Specifies the value of the Document Type field.';
-                //     ApplicationArea = All;
-                // }
-                field(Type; Rec."Type")
-                {
-                    ToolTip = 'Specifies the value of the Type field.';
-                    ApplicationArea = All;
-                }
+
                 field("No."; Rec."No.")
                 {
                     ToolTip = 'Specifies the value of the No.  field.';
                     ApplicationArea = All;
                 }
-                field("Line No."; Rec."Line No.")
+                field("No. 2"; Rec."No. 2")
                 {
-                    ToolTip = 'Specifies the value of the Line No. field.';
+                    ToolTip = 'Specifies the value of the No. 2 field.';
                     ApplicationArea = All;
                 }
-                field("Document No."; Rec."Document No.")
+                field("No. Series"; Rec."No. Series")
                 {
-                    ToolTip = 'Specifies the value of the Document No. field.';
+                    ToolTip = 'Specifies the value of the No. Series field.';
+                    ApplicationArea = All;
+                }
+                field(Description; Rec.Description)
+                {
+                    ToolTip = 'Specifies the value of the Description field.';
                     ApplicationArea = All;
                 }
                 field("Rental Model Line"; Rec."Rental Model Line")
                 {
                     ToolTip = 'Specifies the value of the Car Model field.';
-                    ApplicationArea = All;
-                }
-                field("Rental Color"; Rec."Rental Color")
-                {
-                    ToolTip = 'Specifies the value of the Car Color field.';
                     ApplicationArea = All;
                 }
                 field("Rental Mileage"; Rec."Rental Mileage")
@@ -57,9 +48,9 @@ page 50203 "Rental Line"
                     ToolTip = 'Specifies the value of the Manufacture year field.';
                     ApplicationArea = All;
                 }
-                field(Description; Rec.Description)
+                field("Rental Color"; Rec."Rental Color")
                 {
-                    ToolTip = 'Specifies the value of the Description field.';
+                    ToolTip = 'Specifies the value of the Car Color field.';
                     ApplicationArea = All;
                 }
                 field(Quantity; Rec.Quantity)
@@ -80,6 +71,11 @@ page 50203 "Rental Line"
                 field("Rental Duration"; Rec."Rental Duration")
                 {
                     ToolTip = 'Specifies the value of the Rental Duration field.';
+                    ApplicationArea = All;
+                }
+                field("Unit Price"; Rec."Unit Price")
+                {
+                    ToolTip = 'Specifies the value of the Unit Price field.';
                     ApplicationArea = All;
                 }
             }

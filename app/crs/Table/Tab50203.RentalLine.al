@@ -10,33 +10,59 @@ table 50203 "Rental Line"
         //     Caption = 'Document Type';
         //     DataClassification = CustomerContent;
         // }
-        field(5; Type; Enum "Sales Line Type")
+        // field(5; Type; Enum "Sales Line Type")
+        // {
+        //     Caption = 'Type';
+        //     TableRelation = Item.Type;
+        // }
+        // field(3; "Document No."; Code[20])
+        // {
+        //     Caption = 'Document No.';
+        //     DataClassification = CustomerContent;
+        // }
+        field(1; "No. 2"; Code[20])
         {
-            Caption = 'Type';
-            TableRelation = Item.Type;
+            Caption = 'No. 2';
+            TableRelation = Item."No. 2";
+            //Editable = false;
+        }
+        field(2; "No. Series"; Code[20])
+        {
+            Caption = 'No. Series';
+            TableRelation = Item."No. Series";
+            //Editable = false;
         }
 
-        field(3; "Document No."; Code[20])
-        {
-            Caption = 'Document No.';
-            DataClassification = CustomerContent;
-        }
-        field(4; "Line No."; Integer)
-        {
-            Caption = 'Line No.';
-            DataClassification = CustomerContent;
-            TableRelation = Item."No.";
-        }
         field(6; "No."; Code[20])
         {
             Caption = 'No. ';
             DataClassification = CustomerContent;
             TableRelation = Item."No.";
+            //ValidateTableRelation = false;
+
+
+            // trigger OnValidate()
+            // var
+            // //Item: Record Item;
+            // //ItemVariant: Record "Item Variant";
+            // begin
+            //     if "No." <> '' then begin
+            //         // //Item.Get(Item."No.");
+            //         // //ItemVariant.Get(Item."No.");
+            //         // Rec.Validate("Rental Model Line", Item."Rental Model");
+            //         // //Rec.Validate("Rental Color", ItemVariant.Code);
+            //         // Rec.Validate("Rental Mileage", item."Rental Mileage");
+            //         // Rec.Validate("Rental Manufacture year", item."Rental Manufacture year");
+            //         // Rec.Validate("Description", item."Description");
+
+            //     end;
+            // end;
         }
         field(10; "Rental Model Line"; Code[20])
         {
             Caption = 'Car Model';
             TableRelation = "Item Category".Code;
+            //Editable = false;
         }
 
         field(20; "Rental Color"; Code[20])
@@ -44,24 +70,28 @@ table 50203 "Rental Line"
             Caption = 'Car Color';
             DataClassification = CustomerContent;
             TableRelation = "Item Variant".Code;
+            //Editable = false;
         }
         field(50220; "Rental Mileage"; Integer)
         {
             Caption = 'Mileage';
             DataClassification = CustomerContent;
             TableRelation = Item."Rental Mileage";
+            //Editable = false;
         }
         field(50230; "Rental Manufacture year"; Integer)
         {
             Caption = 'Manufacture year';
             DataClassification = CustomerContent;
             TableRelation = Item."Rental Manufacture year";
+            //Editable = false;
         }
         field(11; Description; Text[250])
         {
             Caption = 'Description';
             DataClassification = CustomerContent;
             TableRelation = Item.Description;
+            //Editable = false;
         }
         field(15; Quantity; Decimal)
         {
@@ -92,7 +122,7 @@ table 50203 "Rental Line"
     }
     keys
     {
-        key(PK; "Document No.", "Line No.")
+        key(PK; "No.")
         {
             Clustered = true;
         }
