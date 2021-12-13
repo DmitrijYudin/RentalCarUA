@@ -102,12 +102,12 @@ table 50202 "Rental Header"
         InitInsert();
     end;
 
-    // trigger OnDelete()
-    // var
-    //     RSHRadionShowMgt: Report "RSH Radion Show Mgt.";
-    // begin
-    //     RSHRadionShowMgt.DeleteRadioShowdetail(Rec."No.");
-    // end;
+    trigger OnDelete()
+    var
+        RentalMgt: Codeunit "Rental Mgt.";
+    begin
+        RentalMgt.DeleteRentalLine(Rec."No.");
+    end;
 
     local procedure InitInsert()
     var

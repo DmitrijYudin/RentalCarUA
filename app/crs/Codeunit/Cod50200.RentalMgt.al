@@ -1,15 +1,10 @@
 codeunit 50200 "Rental Mgt."
 {
-    // procedure DeleteRadioShowdetail(RadionShowNo: Code[20])
-    // var
-    //     RSHRadioShowdetail: Record "RSH Radio Show detail";
-    // begin
-    //     RSHRadioShowdetail.SetRange("Radion Show No.", RadionShowNo);
-    //     RSHRadioShowdetail.DeleteAll(true);
-    //     Customer.init();
-    //     Customer."No." := '';
-    // end;
-
-    // var
-    //     Customer: Record Customer;
+    procedure DeleteRentalLine(DocumentNo: Code[20])
+    var
+        RentalLine: Record "Rental Line";
+    begin
+        RentalLine.SetRange("Document No.", DocumentNo);
+        RentalLine.DeleteAll(true);
+    end;
 }
