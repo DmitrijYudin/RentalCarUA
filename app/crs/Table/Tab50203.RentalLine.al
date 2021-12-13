@@ -22,21 +22,26 @@ table 50203 "Rental Line"
             TableRelation = "Rental Header"."No.";
             Editable = false;
         }
+        field(4; "Line No."; Integer)
+        {
+            DataClassification = CustomerContent;
+            Caption = 'Line No.';
+        }
         field(6; "No."; Code[20])
         {
             Caption = 'No. ';
             DataClassification = CustomerContent;
             TableRelation = Item."No.";
-            ValidateTableRelation = false;
+            //ValidateTableRelation = false;
 
-            //trigger OnValidate()
-            trigger OnLookup()
+            trigger OnValidate()
+            //trigger OnLookup()
             var
                 Item: Record Item;
             //ItemVariant: Record "Item Variant";
             begin
                 if "No." <> '' then begin
-                    Item.Get(Item."No.");
+                    Item.Get(Rec."No.");
                     Rec.Validate("Rental Model Line", Item."Rental Model");
                     Rec.Validate("Rental Mileage", item."Rental Mileage");
                     Rec.Validate("Rental Manufacture year", item."Rental Manufacture year");
@@ -112,7 +117,7 @@ table 50203 "Rental Line"
     }
     keys
     {
-        key(PK; "No.", "Document No.", Description, "Rental Model Line", "Rental Mileage", "Rental Manufacture year", "Rental Color")
+        key(PK; "Document No.", "Line No.")
         {
             Clustered = true;
         }

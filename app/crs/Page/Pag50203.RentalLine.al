@@ -4,7 +4,7 @@ page 50203 "Rental Line"
     Caption = 'Rental Line';
     PageType = ListPart;
     SourceTable = "Rental Line";
-    //AutoSplitKey = true;
+    AutoSplitKey = true;
 
     layout
     {
@@ -39,7 +39,7 @@ page 50203 "Rental Line"
                     //         Rec.Validate("Description", item."Description");
                     //     end;
                     // end;
-                    
+
                 }
                 field(Description; Rec.Description)
                 {
