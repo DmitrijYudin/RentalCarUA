@@ -35,11 +35,11 @@ tableextension 50200 "Rental Item" extends Item
             DataClassification = CustomerContent;
         }
     }
-    keys
-    {
-        key(PK; "Rental Model", "Rental Color", "Rental Manufacture year", "Rental Mileage")
-        {
-        }
-        
-    }
+    // keys
+    // {
+    //     key(PK; "Rental Model", "Rental Color", "Rental Manufacture year", "Rental Mileage")
+    //     {
+    //     }
+
+    // }
 }

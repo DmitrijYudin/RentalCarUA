@@ -5,16 +5,6 @@ table 50203 "Rental Line"
 
     fields
     {
-        // field(1; "Document Type"; Text[250])
-        // {
-        //     Caption = 'Document Type';
-        //     DataClassification = CustomerContent;
-        // }
-        // field(5; Type; Enum "Sales Line Type")
-        // {
-        //     Caption = 'Type';
-        //     TableRelation = Item.Type;
-        // }
         field(3; "Document No."; Code[20])
         {
             Caption = 'Document No.';
@@ -49,7 +39,6 @@ table 50203 "Rental Line"
                     //ItemVariant.Get(Item."No.");
                     //Rec.Validate("Rental Color", ItemVariant.Code);
                 end;
-
             end;
         }
         field(10; "Rental Model Line"; Code[20])
