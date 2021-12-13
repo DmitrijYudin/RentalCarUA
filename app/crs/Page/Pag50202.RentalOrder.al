@@ -55,6 +55,7 @@ page 50202 "Rental Order"
             {
                 ApplicationArea = All;
                 SubPageLink = "Document No." = FIELD("No.");
+                UpdatePropagation = Both;
             }
         }
 

@@ -20,20 +20,8 @@ table 50203 "Rental Line"
             Caption = 'Document No.';
             DataClassification = CustomerContent;
             TableRelation = "Rental Header"."No.";
+            Editable = false;
         }
-        field(1; "No. 2"; Code[20])
-        {
-            Caption = 'No. 2';
-            TableRelation = Item."No. 2";
-            //Editable = false;
-        }
-        field(2; "No. Series"; Code[20])
-        {
-            Caption = 'No. Series';
-            TableRelation = Item."No. Series";
-            //Editable = false;
-        }
-
         field(6; "No."; Code[20])
         {
             Caption = 'No. ';
@@ -42,22 +30,22 @@ table 50203 "Rental Line"
             ValidateTableRelation = false;
 
 
-            trigger OnValidate()
-            var
-                Item: Record Item;
-            //ItemVariant: Record "Item Variant";
-            begin
-                if "No." <> '' then begin
-                    //Item.Get(Item."No.");
-                    //ItemVariant.Get(Item."No.");
-                    Rec.Validate("Rental Model Line", Item."Rental Model");
-                    //Rec.Validate("Rental Color", ItemVariant.Code);
-                    Rec.Validate("Rental Mileage", item."Rental Mileage");
-                    Rec.Validate("Rental Manufacture year", item."Rental Manufacture year");
-                    Rec.Validate("Description", item."Description");
+            // trigger OnValidate()
+            // var
+            //     Item: Record Item;
+            // //ItemVariant: Record "Item Variant";
+            // begin
+            //     if "No." <> '' then begin
+            //         //Item.Get(Item."No.");
+            //         //ItemVariant.Get(Item."No.");
+            //         Rec.Validate("Rental Model Line", Item."Rental Model");
+            //         //Rec.Validate("Rental Color", ItemVariant.Code);
+            //         Rec.Validate("Rental Mileage", item."Rental Mileage");
+            //         Rec.Validate("Rental Manufacture year", item."Rental Manufacture year");
+            //         Rec.Validate("Description", item."Description");
 
-                end;
-            end;
+            //     end;
+            // end;
         }
         field(10; "Rental Model Line"; Code[20])
         {
@@ -123,7 +111,7 @@ table 50203 "Rental Line"
     }
     keys
     {
-        key(PK; "No.")
+        key(PK; "No.", "Document No.")
         {
             Clustered = true;
         }

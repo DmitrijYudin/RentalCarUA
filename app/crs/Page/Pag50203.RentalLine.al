@@ -16,21 +16,12 @@ page 50203 "Rental Line"
                 {
                     ToolTip = 'Specifies the value of the Document No. field.';
                     ApplicationArea = All;
+                    Editable = false;
                 }
 
                 field("No."; Rec."No.")
                 {
                     ToolTip = 'Specifies the value of the No.  field.';
-                    ApplicationArea = All;
-                }
-                field("No. 2"; Rec."No. 2")
-                {
-                    ToolTip = 'Specifies the value of the No. 2 field.';
-                    ApplicationArea = All;
-                }
-                field("No. Series"; Rec."No. Series")
-                {
-                    ToolTip = 'Specifies the value of the No. Series field.';
                     ApplicationArea = All;
                 }
                 field(Description; Rec.Description)
