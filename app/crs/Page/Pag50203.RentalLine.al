@@ -5,7 +5,9 @@ page 50203 "Rental Line"
     PageType = ListPart;
     SourceTable = "Rental Line";
     AutoSplitKey = true;
-
+    MultipleNewLines = false;
+    // DelayedInsert = false;
+    // LinksAllowed = false;
     layout
     {
         area(content)
@@ -47,11 +49,6 @@ page 50203 "Rental Line"
                 field("Rental Color"; Rec."Rental Color")
                 {
                     ToolTip = 'Specifies the value of the Car Color field.';
-                    ApplicationArea = All;
-                }
-                field(Quantity; Rec.Quantity)
-                {
-                    ToolTip = 'Specifies the value of the Quantity field.';
                     ApplicationArea = All;
                 }
                 field("Rental Start Date"; Rec."Rental Start Date")

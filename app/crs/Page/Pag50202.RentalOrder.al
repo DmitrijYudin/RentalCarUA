@@ -3,10 +3,7 @@ page 50202 "Rental Order"
     Caption = 'Rental Order';
     PageType = Card;
     SourceTable = "Rental Header";
-    //PromotedActionCategories = 'New,Process,Report,Approve,Release,Posting,Prepare,Order,Request Approval,History,Print/Send,Navigate';
-    ApplicationArea = all;
-    UsageCategory = Lists;
-
+    PromotedActionCategories = 'New,Process,Report,Approve,Release,Posting,Prepare,Order,Request Approval,History,Print/Send,Navigate';
     layout
     {
         area(content)
@@ -56,6 +53,8 @@ page 50202 "Rental Order"
                 ApplicationArea = All;
                 SubPageLink = "Document No." = FIELD("No.");
                 UpdatePropagation = Both;
+                Editable = true;
+                Enabled = Rec."Customer No." <> '';
             }
         }
 

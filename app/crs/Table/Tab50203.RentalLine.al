@@ -27,17 +27,16 @@ table 50203 "Rental Line"
             trigger OnValidate()
             var
                 Item: Record Item;
-            //ItemVariant: Record "Item Variant";
             begin
                 if "No." <> '' then begin
                     Item.Get(Rec."No.");
                     Rec.Validate("Rental Model Line", Item."Rental Model");
+                    Rec.Validate("Rental Color", item."Rental Color");
                     Rec.Validate("Rental Mileage", item."Rental Mileage");
                     Rec.Validate("Rental Manufacture year", item."Rental Manufacture year");
                     Rec.Validate("Description", item."Description");
+                    Rec.Validate("Unit Price", item."Unit Price");
 
-                    //ItemVariant.Get(Item."No.");
-                    //Rec.Validate("Rental Color", ItemVariant.Code);
                 end;
             end;
         }
@@ -45,7 +44,7 @@ table 50203 "Rental Line"
         {
             Caption = 'Car Model';
             TableRelation = "Item Category".Code;
-            //Editable = false;
+            Editable = false;
         }
 
         field(20; "Rental Color"; Code[20])
@@ -53,38 +52,34 @@ table 50203 "Rental Line"
             Caption = 'Car Color';
             DataClassification = CustomerContent;
             TableRelation = "Item Variant".Code;
-            //Editable = false;
+            Editable = false;
         }
         field(50220; "Rental Mileage"; Integer)
         {
             Caption = 'Mileage';
             DataClassification = CustomerContent;
             TableRelation = Item."Rental Mileage";
-            //Editable = false;
+            Editable = false;
         }
         field(50230; "Rental Manufacture year"; Integer)
         {
             Caption = 'Manufacture year';
             DataClassification = CustomerContent;
             TableRelation = Item."Rental Manufacture year";
-            //Editable = false;
+            Editable = false;
         }
         field(11; Description; Text[100])
         {
             Caption = 'Description';
             DataClassification = CustomerContent;
             TableRelation = Item.Description;
-            //Editable = false;
-        }
-        field(15; Quantity; Decimal)
-        {
-            Caption = 'Quantity';
-            DataClassification = CustomerContent;
+            Editable = false;
         }
         field(22; "Unit Price"; Decimal)
         {
             Caption = 'Unit Price';
             DataClassification = CustomerContent;
+            Editable = false;
         }
         field(53; "Rental Start Date"; Date)
         {
