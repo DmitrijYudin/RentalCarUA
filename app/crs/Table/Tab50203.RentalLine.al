@@ -35,7 +35,6 @@ table 50203 "Rental Line"
             //ValidateTableRelation = false;
 
             trigger OnValidate()
-            //trigger OnLookup()
             var
                 Item: Record Item;
             //ItemVariant: Record "Item Variant";
