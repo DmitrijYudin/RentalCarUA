@@ -38,6 +38,7 @@ table 50203 "Rental Line"
                     Rec.Validate("Unit Price", item."Unit Price");
                 end;
             end;
+
         }
         field(10; "Rental Model Line"; Code[20])
         {
@@ -80,48 +81,6 @@ table 50203 "Rental Line"
             DataClassification = CustomerContent;
             Editable = false;
         }
-        // field(29; Amount; Decimal)
-        // {
-        //     AutoFormatType = 1;
-        //     Caption = 'Amount';
-        //     Editable = false;
-
-        //     trigger OnValidate()
-        //     begin
-        //         Amount := Round(Amount, Currency."Amount Rounding Precision");
-        //         case "VAT Calculation Type" of
-        //             "VAT Calculation Type"::"Normal VAT",
-        //             "VAT Calculation Type"::"Reverse Charge VAT":
-        //                 begin
-        //                     "VAT Base Amount" :=
-        //                       Round(Amount * (1 - SalesHeader."VAT Base Discount %" / 100), Currency."Amount Rounding Precision");
-        //                     "Amount Including VAT" :=
-        //                       Round(Amount + "VAT Base Amount" * "VAT %" / 100, Currency."Amount Rounding Precision");
-        //                 end;
-        //             "VAT Calculation Type"::"Full VAT":
-        //                 if Amount <> 0 then
-        //                     FieldError(Amount,
-        //                       StrSubstNo(
-        //                         Text009, FieldCaption("VAT Calculation Type"),
-        //                         "VAT Calculation Type"));
-        //             "VAT Calculation Type"::"Sales Tax":
-        //                 begin
-        //                     SalesHeader.TestField("VAT Base Discount %", 0);
-        //                     "VAT Base Amount" := Round(Amount, Currency."Amount Rounding Precision");
-        //                     "Amount Including VAT" :=
-        //                       Amount +
-        //                       SalesTaxCalculate.CalculateTax(
-        //                         "Tax Area Code", "Tax Group Code", "Tax Liable", SalesHeader."Posting Date",
-        //                         "VAT Base Amount", "Quantity (Base)", SalesHeader."Currency Factor");
-        //                     OnAfterSalesTaxCalculate(Rec, SalesHeader, Currency);
-        //                     UpdateVATPercent("VAT Base Amount", "Amount Including VAT" - "VAT Base Amount");
-        //                     "Amount Including VAT" := Round("Amount Including VAT", Currency."Amount Rounding Precision");
-        //                 end;
-        //         end;
-
-        //         InitOutstandingAmount();
-        //     end;
-        // }
         field(53; "Rental Start Date"; Date)
         {
             Caption = 'Rental Start Date';
@@ -158,6 +117,21 @@ table 50203 "Rental Line"
         {
             AutoFormatType = 1;
             Caption = 'Line Amount';
+
+        }
+        field(120; "Total Lines Qty."; Integer)
+        {
+            Caption = 'Total Lines Qty.';
+            FieldClass = FlowField;
+            CalcFormula = count("Rental Line" where("Document No." = field("Document No.")));
+            Editable = false;
+        }
+        field(200; "Total Lines Amount"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = sum("Rental Line"."Line Amount" where("Document No." = field("Document No.")));
+            Caption = 'Total Lines Amount';
+            Editable = false;
         }
 
     }
@@ -167,6 +141,12 @@ table 50203 "Rental Line"
         {
             Clustered = true;
         }
+        key(key2; "Line Amount", "Document No.")
+        {
+            //SumIndexFields = "Total Lines Amount";
+        }
+
+
     }
     local procedure CheckDate()
     var

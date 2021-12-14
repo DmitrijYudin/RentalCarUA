@@ -24,6 +24,10 @@ page 50203 "Rental Line"
                 {
                     ToolTip = 'Specifies the value of the No.  field.';
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    begin
+                        CurrPage.Update();
+                    end;
                 }
                 field(Description; Rec.Description)
                 {
@@ -81,28 +85,39 @@ page 50203 "Rental Line"
                     ApplicationArea = All;
                     Editable = false;
                 }
-                field("Line Amount"; rec."Line Amount")
+                field("Line Amount"; Rec."Line Amount")
                 {
                     ToolTip = 'Specifies the value of the Unit Price field.';
                     ApplicationArea = All;
                     Editable = false;
                 }
+
             }
-            // group(Control28)
-            // {
-            //     ShowCaption = false;
-            //     field("Total Amount Excl. VAT"; TotalSalesLine.Amount)
-            //     {
-            //         ApplicationArea = Basic, Suite;
-            //         AutoFormatExpression = Currency.Code;
-            //         AutoFormatType = 1;
-            //         CaptionClass = DocumentTotals.GetTotalExclVATCaption(Currency.Code);
-            //         Caption = 'Total Amount Excl. VAT';
-            //         DrillDown = false;
-            //         Editable = false;
-            //         ToolTip = 'Specifies the sum of the value in the Line Amount Excl. VAT field on all lines in the document minus any discount amount in the Invoice Discount Amount field.';
-            //     }
-            // }
+            group(Control28)
+            {
+                ShowCaption = false;
+                // field("Total Amount Excl. VAT"; Rec.Amount)
+                // {
+                //     ApplicationArea = all;
+                //     //AutoFormatExpression = Currency.Code;
+                //     AutoFormatType = 1;
+                //     //CaptionClass = DocumentTotals.GetTotalExclVATCaption(Currency.Code);
+                //     Caption = 'Total Amount Excl. VAT';
+                //     DrillDown = false;
+                //     Editable = false;
+                //     ToolTip = 'Specifies the sum of the value in the Line Amount Excl. VAT field on all lines in the document minus any discount amount in the Invoice Discount Amount field.';
+                // }
+                field("Total Lines Qty."; Rec."Total Lines Qty.")
+                {
+                    ToolTip = 'Specifies the value of the Total Lines Qty. field.';
+                    ApplicationArea = All;
+                }
+                field("Total Lines Amount"; Rec."Total Lines Amount")
+                {
+                    ToolTip = 'Specifies the value of the Total Lines Amount field.';
+                    ApplicationArea = All;
+                }
+            }
         }
     }
 }
