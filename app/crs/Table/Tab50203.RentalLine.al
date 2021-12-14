@@ -36,7 +36,6 @@ table 50203 "Rental Line"
                     Rec.Validate("Rental Manufacture year", item."Rental Manufacture year");
                     Rec.Validate("Description", item."Description");
                     Rec.Validate("Unit Price", item."Unit Price");
-
                 end;
             end;
         }
@@ -85,18 +84,29 @@ table 50203 "Rental Line"
         {
             Caption = 'Rental Start Date';
             DataClassification = CustomerContent;
-            NotBlank = false;
+            //NotBlank = false;
+
+            trigger OnValidate()
+            begin
+                CalcDuretion();
+            end;
         }
         field(54; "Rental End Date"; Date)
         {
             Caption = 'Rental End Date';
             DataClassification = CustomerContent;
-            NotBlank = false;
+            //NotBlank = false;
+
+            trigger OnValidate()
+            begin
+                CalcDuretion();
+            end;
         }
-        field(52; "Rental Duration"; Duration)
+        field(52; "Rental Duration"; Integer)
         {
             Caption = 'Rental Duration';
             DataClassification = CustomerContent;
+            Editable = false;
         }
 
     }
@@ -107,5 +117,13 @@ table 50203 "Rental Line"
             Clustered = true;
         }
     }
-
+    local procedure CalcDuretion()
+    begin
+        if (Rec."Rental Start Date" = 0D)
+           or (Rec."Rental End Date" = 0D)
+        then
+            "Rental Duration" := 0
+        else
+            "Rental Duration" := Rec."Rental End Date" - Rec."Rental Start Date";
+    end;
 }

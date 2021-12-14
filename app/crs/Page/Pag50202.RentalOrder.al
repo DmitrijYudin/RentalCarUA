@@ -22,6 +22,8 @@ page 50202 "Rental Order"
                     ToolTip = 'Specifies the value of the Customer No. field.';
                     ApplicationArea = All;
                     NotBlank = false;
+                    ShowMandatory = true;
+                    Visible = true;
                 }
 
                 field("Salesperson Code"; Rec."Salesperson Code")
@@ -29,6 +31,8 @@ page 50202 "Rental Order"
                     ToolTip = 'Specifies the value of the Salesperson Code field.';
                     ApplicationArea = All;
                     NotBlank = false;
+                    ShowMandatory = true;
+                    Visible = true;
                 }
                 field("Customer Name"; Rec."Customer Name")
                 {
