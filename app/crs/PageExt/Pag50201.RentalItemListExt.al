@@ -27,6 +27,12 @@ pageextension 50201 "Rental Item List Ext" extends "Item List"
                 ToolTip = 'Specifies the value of the Manufacture year field.';
                 ApplicationArea = All;
             }
+            field("Rental Item Discount"; Rec."Rental Item Discount")
+            {
+                ToolTip = 'Specifies the value of the Rental Item Discount % field.';
+                ApplicationArea = All;
+                ShowMandatory = true;
+            }
         }
     }
 }

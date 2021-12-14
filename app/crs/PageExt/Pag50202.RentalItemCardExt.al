@@ -6,7 +6,6 @@ pageextension 50202 "Rental Item Card Ext" extends "Item Card"
     {
         addafter("No.")
         {
-
             field("Rental Model"; Rec."Rental Model")
             {
                 ToolTip = 'Specifies the value of the Car Model field.';
@@ -26,6 +25,12 @@ pageextension 50202 "Rental Item Card Ext" extends "Item Card"
             {
                 ToolTip = 'Specifies the value of the Manufacture year field.';
                 ApplicationArea = All;
+            }
+            field("Rental Item Discount"; Rec."Rental Item Discount")
+            {
+                ToolTip = 'Specifies the value of the Rental Item Discount % field.';
+                ApplicationArea = All;
+                ShowMandatory = true;
             }
         }
     }

@@ -34,12 +34,12 @@ tableextension 50200 "Rental Item" extends Item
             Caption = 'Manufacture year';
             DataClassification = CustomerContent;
         }
+        field(50240; "Rental Item Discount"; Decimal)
+        {
+            Caption = 'Rental Item Discount %';
+            DataClassification = CustomerContent;
+            //TableRelation = "Price List Line"."Line Discount %";
+            NotBlank = false;
+        }
     }
-    // keys
-    // {
-    //     key(PK; "Rental Model", "Rental Color", "Rental Manufacture year", "Rental Mileage")
-    //     {
-    //     }
-
-    // }
 }

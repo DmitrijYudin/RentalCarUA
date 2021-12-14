@@ -10,6 +10,7 @@ pageextension 50203 "Rental CustomerCardExt" extends "Customer Card"
             {
                 ToolTip = 'Specifies the value of the Car Rental.';
                 ApplicationArea = All;
+                ShowMandatory = true;
             }
         }
     }

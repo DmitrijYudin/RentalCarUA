@@ -36,6 +36,7 @@ table 50203 "Rental Line"
                     Rec.Validate("Rental Manufacture year", item."Rental Manufacture year");
                     Rec.Validate("Description", item."Description");
                     Rec.Validate("Unit Price", item."Unit Price");
+                    Rec.Validate("Item Discount", item."Rental Item Discount");
                 end;
             end;
 
@@ -105,6 +106,7 @@ table 50203 "Rental Line"
                 CheckDate();
                 CalcDuration();
                 CalcLineAmount();
+                CalcLineDiscount();
             end;
         }
         field(52; "Rental Duration"; Integer)
@@ -119,6 +121,20 @@ table 50203 "Rental Line"
             Caption = 'Line Amount';
 
         }
+        field(104; "Item Discount"; Decimal)
+        {
+            AutoFormatType = 1;
+            Caption = 'Item Discount %';
+            TableRelation = Item."Rental Item Discount";
+            Editable = false;
+        }
+        field(105; "Item Discount Amount"; Decimal)
+        {
+            AutoFormatType = 1;
+            Caption = 'Item Discount Amount';
+            Editable = false;
+        }
+
         field(120; "Total Lines Qty."; Integer)
         {
             Caption = 'Total Lines Qty.';
@@ -133,7 +149,13 @@ table 50203 "Rental Line"
             Caption = 'Total Lines Amount';
             Editable = false;
         }
-
+        field(210; "Total Lines Discount Amount"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = sum("Rental Line"."Item Discount Amount" where("Document No." = field("Document No.")));
+            Caption = 'Total Lines Discount Amount';
+            Editable = false;
+        }
     }
     keys
     {
@@ -172,5 +194,10 @@ table 50203 "Rental Line"
     local procedure CalcLineAmount()
     begin
         "Line Amount" := "Rental Duration" * "Unit Price";
+    end;
+
+    local procedure CalcLineDiscount()
+    begin
+        "Item Discount Amount" := "Line Amount" * "Item Discount" / 100;
     end;
 }
