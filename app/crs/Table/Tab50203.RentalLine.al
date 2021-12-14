@@ -141,12 +141,10 @@ table 50203 "Rental Line"
         {
             Clustered = true;
         }
-        key(key2; "Line Amount", "Document No.")
+        key(key2; "Line Amount")
         {
-            //SumIndexFields = "Total Lines Amount";
+            SumIndexFields = "Line Amount";
         }
-
-
     }
     local procedure CheckDate()
     var

@@ -58,6 +58,7 @@ table 50202 "Rental Header"
                     Rec.Validate("Customer Name", Customer.Name);
                     Rec.Validate("Bill-to Address", Customer.Address);
                     Rec.Validate("Phone No.", Customer."Phone No.");
+                    Rec.Validate("Rental Cust. Discount", Customer."Rental Cust. Discount");
                 end;
             end;
         }
@@ -68,6 +69,14 @@ table 50202 "Rental Header"
             TableRelation = Customer.Name;
             Editable = false;
         }
+        field(31; "Rental Cust. Discount"; Decimal)
+        {
+            Caption = 'Rental Cust. Discount %';
+            DataClassification = CustomerContent;
+            TableRelation = Customer."Rental Cust. Discount";
+            Editable = false;
+        }
+
         field(50; "Salesperson Code"; Code[20])
         {
             Caption = 'Salesperson Code';

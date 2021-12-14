@@ -39,6 +39,11 @@ page 50202 "Rental Order"
                     ToolTip = 'Specifies the value of the Customer Name field.';
                     ApplicationArea = All;
                 }
+                field("Rental Cust. Discount"; Rec."Rental Cust. Discount")
+                {
+                    ToolTip = 'Specifies the value of the Cust. Discount % field.';
+                    ApplicationArea = All;
+                }
                 field("Bill-to Address"; Rec."Bill-to Address")
                 {
                     ToolTip = 'Specifies the value of the Bill-to Address field.';
