@@ -81,9 +81,28 @@ page 50203 "Rental Line"
                     ApplicationArea = All;
                     Editable = false;
                 }
-
+                field("Line Amount"; rec."Line Amount")
+                {
+                    ToolTip = 'Specifies the value of the Unit Price field.';
+                    ApplicationArea = All;
+                    Editable = false;
+                }
             }
+            // group(Control28)
+            // {
+            //     ShowCaption = false;
+            //     field("Total Amount Excl. VAT"; TotalSalesLine.Amount)
+            //     {
+            //         ApplicationArea = Basic, Suite;
+            //         AutoFormatExpression = Currency.Code;
+            //         AutoFormatType = 1;
+            //         CaptionClass = DocumentTotals.GetTotalExclVATCaption(Currency.Code);
+            //         Caption = 'Total Amount Excl. VAT';
+            //         DrillDown = false;
+            //         Editable = false;
+            //         ToolTip = 'Specifies the sum of the value in the Line Amount Excl. VAT field on all lines in the document minus any discount amount in the Invoice Discount Amount field.';
+            //     }
+            // }
         }
     }
-
 }
