@@ -93,7 +93,6 @@ table 50203 "Rental Line"
                 CalcDuration();
                 CalcLineAmount();
                 SetDiscount();
-                CalcLineDiscount();
                 ItemDiscAmount()
             end;
         }
@@ -109,8 +108,8 @@ table 50203 "Rental Line"
                 CalcDuration();
                 CalcLineAmount();
                 SetDiscount();
-                CalcLineDiscount();
-                ItemDiscAmount()
+                ItemDiscAmount();
+                LineCost();
             end;
         }
         field(52; "Rental Duration"; Integer)
@@ -131,10 +130,10 @@ table 50203 "Rental Line"
             TableRelation = Item."Rental Item Discount";
             // Editable = false;
         }
-        field(105; "Item Discount Amount"; Decimal)
+        field(105; "Line Discount Amount"; Decimal)
         {
             AutoFormatType = 1;
-            Caption = 'Item Discount Amount';
+            Caption = 'Line Discount Amount';
             // Editable = false;
         }
 
@@ -150,10 +149,9 @@ table 50203 "Rental Line"
             Caption = 'Applied Discount %';
             // Editable = false;
         }
-
-        field(230; "Total Customer Discount Amount"; Decimal)
+        field(230; "Line Cost"; Decimal)
         {
-            Caption = 'Total Customer Discount Amount %';
+            Caption = 'Line Cost';
             // Editable = false;
         }
         field(250; "Total Lines Qty."; Integer)
@@ -173,8 +171,15 @@ table 50203 "Rental Line"
         field(270; "Total Lines Discount Amount"; Decimal)
         {
             FieldClass = FlowField;
-            CalcFormula = sum("Rental Line"."Item Discount Amount" where("Document No." = field("Document No.")));
+            CalcFormula = sum("Rental Line"."Line Discount Amount" where("Document No." = field("Document No.")));
             Caption = 'Total Lines Discount Amount';
+            // Editable = false;
+        }
+        field(280; "Total Order Cost"; Decimal)
+        {
+            FieldClass = FlowField;
+            CalcFormula = sum("Rental Line"."Line Cost" where("Document No." = field("Document No.")));
+            Caption = 'Total Order Cost';
             // Editable = false;
         }
     }
@@ -218,11 +223,6 @@ table 50203 "Rental Line"
         "Line Amount" := "Rental Duration" * "Unit Price";
     end;
 
-    local procedure CalcLineDiscount()
-    begin
-        "Item Discount Amount" := "Line Amount" * "Item Discount" / 100;
-    end;
-
     local procedure SetDiscount()
     begin
         Rec."Applied Discount" := Rec."Item Discount";
@@ -232,6 +232,11 @@ table 50203 "Rental Line"
 
     local procedure ItemDiscAmount()
     begin
-        "Item Discount Amount" := "Line Amount" * "Applied Discount" / 100;
+        "Line Discount Amount" := "Line Amount" * "Applied Discount" / 100;
+    end;
+
+    local procedure LineCost()
+    begin
+        "Line Cost" := "Line Amount" - "Line Discount Amount";
     end;
 }
