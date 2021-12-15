@@ -4,13 +4,16 @@ pageextension 50203 "Rental CustomerCardExt" extends "Customer Card"
 
     layout
     {
-        addafter(Name)
+        addafter(General)
         {
-            field("Rental Cust. Discount"; Rec."Rental Cust. Discount")
+            group("Rental Car")
             {
-                ToolTip = 'Specifies the value of the Car Rental.';
-                ApplicationArea = All;
-                ShowMandatory = true;
+                field("Rental Cust. Discount"; Rec."Rental Cust. Discount")
+                {
+                    ToolTip = 'Specifies the value of the Car Rental.';
+                    ApplicationArea = All;
+                    ShowMandatory = true;
+                }
             }
         }
     }

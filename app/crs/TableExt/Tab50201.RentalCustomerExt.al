@@ -7,6 +7,8 @@ tableextension 50201 "Rental CustomerExt" extends Customer
             Caption = 'Cust. Discount %';
             DataClassification = CustomerContent;
             NotBlank = false;
+            MinValue = 0;
+            MaxValue = 100;
         }
     }
 }

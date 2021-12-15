@@ -24,6 +24,7 @@ page 50203 "Rental Line"
                 {
                     ToolTip = 'Specifies the value of the No.  field.';
                     ApplicationArea = All;
+
                     trigger OnValidate()
                     begin
                         CurrPage.Update();
@@ -96,6 +97,16 @@ page 50203 "Rental Line"
                     ToolTip = 'Specifies the value of the Item Discount % field.';
                     ApplicationArea = All;
                 }
+                field("Rental Cust. Discount"; Rec."Rental Cust. Discount")
+                {
+                    ToolTip = 'Specifies the value of the Customer Discount % field.';
+                    ApplicationArea = All;
+                }
+                field("Applied Discount"; Rec."Applied Discount")
+                {
+                    ToolTip = 'Specifies the value of the Applied Discount % field.';
+                    ApplicationArea = All;
+                }
                 field("Item Discount Amount"; Rec."Item Discount Amount")
                 {
                     ToolTip = 'Specifies the value of the Item Discount Amount field.';
@@ -123,11 +134,6 @@ page 50203 "Rental Line"
                 field("Total Customer Discount Amount"; Rec."Total Customer Discount Amount")
                 {
                     ToolTip = 'Specifies the value of the Total Customer Discount Amount % field.';
-                    ApplicationArea = All;
-                }
-                field("Rental Cust. Discount"; Rec."Rental Cust. Discount")
-                {
-                    ToolTip = 'Specifies the value of the Customer Discount % field.';
                     ApplicationArea = All;
                 }
             }
