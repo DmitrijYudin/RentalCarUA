@@ -40,6 +40,8 @@ tableextension 50200 "Rental Item" extends Item
             DataClassification = CustomerContent;
             //TableRelation = "Price List Line"."Line Discount %";
             NotBlank = false;
+            MinValue = 0;
+            MaxValue = 100;
         }
     }
 }

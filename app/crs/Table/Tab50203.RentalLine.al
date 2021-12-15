@@ -2,7 +2,6 @@ table 50203 "Rental Line"
 {
     Caption = 'Rental Line ';
     DataClassification = CustomerContent;
-
     fields
     {
         field(3; "Document No."; Code[20])
@@ -103,10 +102,13 @@ table 50203 "Rental Line"
 
             trigger OnValidate()
             begin
+                //SetAutoCalcFields("Rental Cust. Discount");
+                //CalcFields("Rental Cust. Discount");
                 CheckDate();
                 CalcDuration();
                 CalcLineAmount();
                 CalcLineDiscount();
+                //"Rental Cust. Discount" := Rec."Rental Cust. Discount";
             end;
         }
         field(52; "Rental Duration"; Integer)
@@ -155,6 +157,33 @@ table 50203 "Rental Line"
             CalcFormula = sum("Rental Line"."Item Discount Amount" where("Document No." = field("Document No.")));
             Caption = 'Total Lines Discount Amount';
             Editable = false;
+
+            trigger OnValidate()
+            begin
+                Rec."Total Customer Discount Amount" := "Rental Cust. Discount" * "Total Lines Amount";
+            end;
+
+        }
+        field(220; "Rental Cust. Discount"; Decimal)
+        {
+            Caption = 'Rental Cust. Discount %';
+            Editable = false;
+            //TableRelation = "Rental Header"."Rental Cust. Discount";
+            //TableRelation = Customer."Rental Cust. Discount";
+            FieldClass = FlowField;
+            CalcFormula = lookup("Rental Header"."Rental Cust. Discount" where("No." = field("Document No.")));
+
+
+            trigger OnValidate()
+            begin
+                Rec."Total Customer Discount Amount" := "Rental Cust. Discount" * "Total Lines Amount";
+            end;
+        }
+        field(230; "Total Customer Discount Amount"; Decimal)
+        {
+            Caption = 'Total Customer Discount Amount %';
+
+            //Editable = false;
         }
     }
     keys

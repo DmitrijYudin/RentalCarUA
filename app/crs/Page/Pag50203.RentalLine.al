@@ -101,7 +101,6 @@ page 50203 "Rental Line"
                     ToolTip = 'Specifies the value of the Item Discount Amount field.';
                     ApplicationArea = All;
                 }
-
             }
             group(Control28)
             {
@@ -119,6 +118,16 @@ page 50203 "Rental Line"
                 field("Total Lines Discount Amount"; Rec."Total Lines Discount Amount")
                 {
                     ToolTip = 'Specifies the value of the Total Lines Discount Amount field.';
+                    ApplicationArea = All;
+                }
+                field("Total Customer Discount Amount"; Rec."Total Customer Discount Amount")
+                {
+                    ToolTip = 'Specifies the value of the Total Customer Discount Amount % field.';
+                    ApplicationArea = All;
+                }
+                field("Rental Cust. Discount"; Rec."Rental Cust. Discount")
+                {
+                    ToolTip = 'Specifies the value of the Customer Discount % field.';
                     ApplicationArea = All;
                 }
             }
