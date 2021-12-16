@@ -17,6 +17,12 @@ tableextension 50200 "Rental Item" extends Item
                 UpdateItemCategoryId();
             end;
         }
+        field(50205; "Rental Visible"; Boolean)
+        {
+            Caption = 'Visible on Rental Order';
+            DataClassification = CustomerContent;
+            InitValue = false;
+        }
 
         field(50211; "Rental Color"; Code[20])
         {

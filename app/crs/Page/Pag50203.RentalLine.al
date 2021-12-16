@@ -24,6 +24,7 @@ page 50203 "Rental Line"
                 {
                     ToolTip = 'Specifies the value of the No.  field.';
                     ApplicationArea = All;
+                    ShowMandatory = true;
 
                     trigger OnValidate()
                     begin

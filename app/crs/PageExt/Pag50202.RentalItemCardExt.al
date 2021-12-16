@@ -34,6 +34,11 @@ pageextension 50202 "Rental Item Card Ext" extends "Item Card"
                     ApplicationArea = All;
                     ShowMandatory = true;
                 }
+                field("Rental Visible"; Rec."Rental Visible")
+                {
+                    ToolTip = 'Specifies the value of the Visible on Rental Order field.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

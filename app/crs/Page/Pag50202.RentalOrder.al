@@ -60,7 +60,6 @@ page 50202 "Rental Order"
                     Caption = 'Document Modified at';
                     ApplicationArea = All;
                 }
-
             }
             part(SalesLines; "Rental Line")
             {

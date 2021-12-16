@@ -2,6 +2,9 @@ table 50203 "Rental Line"
 {
     Caption = 'Rental Line ';
     DataClassification = CustomerContent;
+    //LookupPageId = "Rental Line";
+    //DrillDownPageId = "Rental Line";
+
     fields
     {
         field(3; "Document No."; Code[20])
@@ -9,7 +12,7 @@ table 50203 "Rental Line"
             Caption = 'Document No.';
             DataClassification = CustomerContent;
             TableRelation = "Rental Header"."No.";
-            // // Editable = false;
+            Editable = false;
         }
         field(4; "Line No."; Integer)
         {
@@ -20,7 +23,9 @@ table 50203 "Rental Line"
         {
             Caption = 'No. ';
             DataClassification = CustomerContent;
-            TableRelation = Item."No.";
+            TableRelation = Item."No." where("Rental Visible" = const(true));
+            Editable = true;
+            
             //ValidateTableRelation = false;
 
             trigger OnValidate()
@@ -44,7 +49,7 @@ table 50203 "Rental Line"
         {
             Caption = 'Car Model';
             TableRelation = "Item Category".Code;
-            // Editable = false;
+            Editable = false;
         }
 
         field(20; "Rental Color"; Code[20])
@@ -52,34 +57,34 @@ table 50203 "Rental Line"
             Caption = 'Car Color';
             DataClassification = CustomerContent;
             TableRelation = "Item Variant".Code;
-            // Editable = false;
+            Editable = false;
         }
         field(50220; "Rental Mileage"; Integer)
         {
             Caption = 'Mileage';
             DataClassification = CustomerContent;
             TableRelation = Item."Rental Mileage";
-            // Editable = false;
+            Editable = false;
         }
         field(50230; "Rental Manufacture year"; Integer)
         {
             Caption = 'Manufacture year';
             DataClassification = CustomerContent;
             TableRelation = Item."Rental Manufacture year";
-            // Editable = false;
+            Editable = false;
         }
         field(11; Description; Text[100])
         {
             Caption = 'Description';
             DataClassification = CustomerContent;
             TableRelation = Item.Description;
-            // Editable = false;
+            Editable = false;
         }
         field(22; "Unit Price"; Decimal)
         {
             Caption = 'Unit Price';
             DataClassification = CustomerContent;
-            // Editable = false;
+            Editable = false;
         }
         field(53; "Rental Start Date"; Date)
         {
@@ -116,7 +121,7 @@ table 50203 "Rental Line"
         {
             Caption = 'Rental Duration. Days';
             DataClassification = CustomerContent;
-            // Editable = false;
+            Editable = false;
         }
         field(103; "Line Amount"; Decimal)
         {
@@ -128,59 +133,59 @@ table 50203 "Rental Line"
             AutoFormatType = 1;
             Caption = 'Item Discount %';
             TableRelation = Item."Rental Item Discount";
-            // Editable = false;
+            Editable = false;
         }
-        field(105; "Line Discount Amount"; Decimal)
-        {
-            AutoFormatType = 1;
-            Caption = 'Line Discount Amount';
-            // Editable = false;
-        }
-
         field(220; "Rental Cust. Discount"; Decimal)
         {
             Caption = 'Rental Cust. Discount %';
-            // Editable = false;
             FieldClass = FlowField;
             CalcFormula = lookup("Rental Header"."Rental Cust. Discount" where("No." = field("Document No.")));
+            Editable = false;
         }
+        field(222; "Line Discount Amount"; Decimal)
+        {
+            AutoFormatType = 1;
+            Caption = 'Line Discount Amount';
+            Editable = false;
+        }
+
         field(225; "Applied Discount"; Decimal)
         {
             Caption = 'Applied Discount %';
-            // Editable = false;
+            Editable = false;
         }
         field(230; "Line Cost"; Decimal)
         {
             Caption = 'Line Cost';
-            // Editable = false;
+            Editable = false;
         }
         field(250; "Total Lines Qty."; Integer)
         {
             Caption = 'Total Lines Qty.';
             FieldClass = FlowField;
             CalcFormula = count("Rental Line" where("Document No." = field("Document No.")));
-            // Editable = false;
+            Editable = false;
         }
         field(260; "Total Lines Amount"; Decimal)
         {
             FieldClass = FlowField;
             CalcFormula = sum("Rental Line"."Line Amount" where("Document No." = field("Document No.")));
             Caption = 'Total Lines Amount';
-            // Editable = false;
+            Editable = false;
         }
         field(270; "Total Lines Discount Amount"; Decimal)
         {
             FieldClass = FlowField;
             CalcFormula = sum("Rental Line"."Line Discount Amount" where("Document No." = field("Document No.")));
             Caption = 'Total Lines Discount Amount';
-            // Editable = false;
+            Editable = false;
         }
         field(280; "Total Order Cost"; Decimal)
         {
             FieldClass = FlowField;
             CalcFormula = sum("Rental Line"."Line Cost" where("Document No." = field("Document No.")));
             Caption = 'Total Order Cost';
-            // Editable = false;
+            Editable = false;
         }
     }
     keys
