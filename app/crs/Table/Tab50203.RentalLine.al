@@ -25,7 +25,7 @@ table 50203 "Rental Line"
             DataClassification = CustomerContent;
             TableRelation = Item."No." where("Rental Visible" = const(true));
             Editable = true;
-            
+
             //ValidateTableRelation = false;
 
             trigger OnValidate()
@@ -95,6 +95,7 @@ table 50203 "Rental Line"
             trigger OnValidate()
             begin
                 CheckDate();
+                CheckItemAvailable();
                 CalcDuration();
                 CalcLineAmount();
                 SetDiscount();
@@ -244,4 +245,12 @@ table 50203 "Rental Line"
     begin
         "Line Cost" := "Line Amount" - "Line Discount Amount";
     end;
+
+    local procedure CheckItemAvailable()
+    var
+        ServiceTerm: Integer;
+    begin
+        
+    end;
+
 }
