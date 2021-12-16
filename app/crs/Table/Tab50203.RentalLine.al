@@ -111,6 +111,7 @@ table 50203 "Rental Line"
             trigger OnValidate()
             begin
                 CheckDate();
+                CheckItemAvailable();
                 CalcDuration();
                 CalcLineAmount();
                 SetDiscount();
@@ -248,9 +249,19 @@ table 50203 "Rental Line"
 
     local procedure CheckItemAvailable()
     var
-        ServiceTerm: Integer;
+        RentalLine: Record "Rental Line";
+        TextErr: Text;
     begin
-        
+        RentalLine.SetRange("No.", Rec."No.");
+        RentalLine.SetFilter("Rental Start Date", '<=%1', Rec."Rental Start Date");
+        RentalLine.SetFilter("Rental end Date", '>=%1', Rec."Rental Start Date");
+        RentalLine.SetFilter("Line No.", '<>%1', Rec."Line No.");
+        if RentalLine.FindSet() then
+            repeat
+                TextErr := 'Item ' + format(RentalLine."No.") + ' is reserved \ Order No. ' + Format(RentalLine."Document No.") + 'Line No.:' + Format(RentalLine."Line No.") + '  Start Date:' + Format(RentalLine."Rental Start Date") + '  End Date:' + format(RentalLine."Rental End Date");
+                Message(TextErr);
+            until RentalLine.Next() = 0;
+        Reset();
     end;
 
 }
