@@ -11,7 +11,7 @@ page 50201 "Rental Setup"
     {
         area(content)
         {
-            group(Numberig)
+            group(Numbering)
             {
                 field("Rental Nos."; Rec."Rental Nos.")
                 {
