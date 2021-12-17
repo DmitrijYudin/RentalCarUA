@@ -144,14 +144,4 @@ table 50202 "Rental Header"
         // if RadioShowSetup."Radio Show Nos." = '' then
         //     Error(RadioShowNosErr, RadioShowSetup.FieldCaption("Radio Show Nos."), RadioShowSetup.TableCaption());
     end;
-
-    // local procedure CalcQuoteValidUntilDate()
-    // var
-    //     SalesReceivablesSetup: Record "Sales & Receivables Setup";
-    //     BlankDateFormula: DateFormula;
-    // begin
-    //     SalesReceivablesSetup.Get();
-    //     if SalesReceivablesSetup."Quote Validity Calculation" <> BlankDateFormula then
-    //         "Quote Valid Until Date" := CalcDate(SalesReceivablesSetup."Quote Validity Calculation", "Document Date");
-    // end;
 }

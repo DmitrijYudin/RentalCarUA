@@ -14,6 +14,12 @@ page 50203 "Rental Line"
         {
             repeater(General)
             {
+                field("Line No."; Rec."Line No.")
+                {
+                    ToolTip = 'Specifies the value of the Line No. field.';
+                    ApplicationArea = All;
+                    Editable = false;
+                }
                 field("Document No."; Rec."Document No.")
                 {
                     ToolTip = 'Specifies the value of the Document No. field.';

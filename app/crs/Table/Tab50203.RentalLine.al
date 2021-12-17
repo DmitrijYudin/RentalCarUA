@@ -42,6 +42,7 @@ table 50203 "Rental Line"
                     Rec.Validate("Unit Price", item."Unit Price");
                     Rec.Validate("Item Discount", item."Rental Item Discount");
                 end;
+                SetDiscount();
             end;
 
         }
@@ -94,12 +95,12 @@ table 50203 "Rental Line"
 
             trigger OnValidate()
             begin
+                CheckItemAvailableStartDate();
                 CheckDate();
-                CheckItemAvailable();
                 CalcDuration();
                 CalcLineAmount();
-                SetDiscount();
-                ItemDiscAmount()
+                ItemDiscAmount();
+                LineCost();
             end;
         }
         field(54; "Rental End Date"; Date)
@@ -110,11 +111,10 @@ table 50203 "Rental Line"
 
             trigger OnValidate()
             begin
+                //CheckItemAvailableEndDate();
                 CheckDate();
-                CheckItemAvailable();
                 CalcDuration();
                 CalcLineAmount();
-                SetDiscount();
                 ItemDiscAmount();
                 LineCost();
             end;
@@ -150,7 +150,6 @@ table 50203 "Rental Line"
             Caption = 'Line Discount Amount';
             Editable = false;
         }
-
         field(225; "Applied Discount"; Decimal)
         {
             Caption = 'Applied Discount %';
@@ -204,12 +203,17 @@ table 50203 "Rental Line"
 
     local procedure CheckDate()
     var
-        CheckDateErr: Label '"Rental End Date" must be > "Rental Start Date". "Rental End Date" will be set to "0"', Comment = '1%="Rental Start Date" 2%="Rental End Date"';
+        CheckDateErr: Label '"Rental End Date" must be > "Rental Start Date". \All dates will be set to "0"', Comment = '1%="Rental Start Date" 2%="Rental End Date"';
     begin
         if (Rec."Rental Start Date" <> 0D) and (Rec."Rental End Date" <> 0D) then
             if Rec."Rental End Date" < Rec."Rental Start Date" then begin
                 Message(CheckDateErr);
                 Rec."Rental End Date" := 0D;
+                Rec."Rental Start Date" := 0D;
+                CalcDuration();
+                CalcLineAmount();
+                ItemDiscAmount();
+                LineCost();
             end;
     end;
 
@@ -220,7 +224,7 @@ table 50203 "Rental Line"
         then
             "Rental Duration" := 0
         else
-            "Rental Duration" := Rec."Rental End Date" - Rec."Rental Start Date";
+            "Rental Duration" := Rec."Rental End Date" - Rec."Rental Start Date" + 1;
         if rec."Rental End Date" = rec."Rental Start Date" then
             "Rental Duration" := 1;
     end;
@@ -247,21 +251,23 @@ table 50203 "Rental Line"
         "Line Cost" := "Line Amount" - "Line Discount Amount";
     end;
 
-    local procedure CheckItemAvailable()
+    local procedure CheckItemAvailableStartDate()
     var
         RentalLine: Record "Rental Line";
-        TextErr: Text;
+        StartDateErr: Text;
     begin
         RentalLine.SetRange("No.", Rec."No.");
         RentalLine.SetFilter("Rental Start Date", '<=%1', Rec."Rental Start Date");
         RentalLine.SetFilter("Rental end Date", '>=%1', Rec."Rental Start Date");
-        RentalLine.SetFilter("Line No.", '<>%1', Rec."Line No.");
-        if RentalLine.FindSet() then
+        if RentalLine.FindSet() then begin
             repeat
-                TextErr := 'Item ' + format(RentalLine."No.") + ' is reserved \ Order No. ' + Format(RentalLine."Document No.") + 'Line No.:' + Format(RentalLine."Line No.") + '  Start Date:' + Format(RentalLine."Rental Start Date") + '  End Date:' + format(RentalLine."Rental End Date");
-                Message(TextErr);
+                StartDateErr := 'Start Date Error:\Item :' + Format(RentalLine."No.") + ' Document No.:' + Format(RentalLine."Document No.") + ' Line No.:' + Format(RentalLine."Line No.") + 'Period:' + Format(RentalLine."Rental Start Date") + '...' + Format(RentalLine."Rental End Date");
+                Message(StartDateErr);
             until RentalLine.Next() = 0;
-        Reset();
+            Rec."Rental Start Date" := 0D;
+            Rec."Rental End Date" := 0D;
+        end;
+        //Reset();
     end;
 
 }
