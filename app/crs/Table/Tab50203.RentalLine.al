@@ -25,7 +25,6 @@ table 50203 "Rental Line"
             DataClassification = CustomerContent;
             TableRelation = Item."No." where("Rental Visible" = const(true));
             Editable = true;
-
             //ValidateTableRelation = false;
 
             trigger OnValidate()
@@ -95,8 +94,9 @@ table 50203 "Rental Line"
 
             trigger OnValidate()
             begin
-                CheckItemAvailableStartDate();
+                CheckItemSet();
                 CheckDate();
+                CheckItemAvailableStartDate();
                 CalcDuration();
                 CalcLineAmount();
                 ItemDiscAmount();
@@ -111,8 +111,9 @@ table 50203 "Rental Line"
 
             trigger OnValidate()
             begin
-                //CheckItemAvailableEndDate();
+                CheckItemSet();
                 CheckDate();
+                CheckItemAvailableEndDate();
                 CalcDuration();
                 CalcLineAmount();
                 ItemDiscAmount();
@@ -200,23 +201,6 @@ table 50203 "Rental Line"
             SumIndexFields = "Line Amount";
         }
     }
-
-    local procedure CheckDate()
-    var
-        CheckDateErr: Label '"Rental End Date" must be > "Rental Start Date". \All dates will be set to "0"', Comment = '1%="Rental Start Date" 2%="Rental End Date"';
-    begin
-        if (Rec."Rental Start Date" <> 0D) and (Rec."Rental End Date" <> 0D) then
-            if Rec."Rental End Date" < Rec."Rental Start Date" then begin
-                Message(CheckDateErr);
-                Rec."Rental End Date" := 0D;
-                Rec."Rental Start Date" := 0D;
-                CalcDuration();
-                CalcLineAmount();
-                ItemDiscAmount();
-                LineCost();
-            end;
-    end;
-
     local procedure CalcDuration()
     begin
         if (Rec."Rental Start Date" = 0D)
@@ -251,23 +235,84 @@ table 50203 "Rental Line"
         "Line Cost" := "Line Amount" - "Line Discount Amount";
     end;
 
+    //----------------  errors input checking -------------------
+    local procedure CheckItemSet();
+    var
+        CheckItemErr: Label 'Set Item first', Comment = 'Set Item first';
+    begin
+        if Rec."No." = '' then
+            Error(CheckItemErr);
+    end;
+
     local procedure CheckItemAvailableStartDate()
     var
         RentalLine: Record "Rental Line";
         StartDateErr: Text;
     begin
         RentalLine.SetRange("No.", Rec."No.");
+        //RentalLine.SetFilter("Line No.", '<>%1', Rec."Line No.");
         RentalLine.SetFilter("Rental Start Date", '<=%1', Rec."Rental Start Date");
         RentalLine.SetFilter("Rental end Date", '>=%1', Rec."Rental Start Date");
-        if RentalLine.FindSet() then begin
-            repeat
-                StartDateErr := 'Start Date Error:\Item :' + Format(RentalLine."No.") + ' Document No.:' + Format(RentalLine."Document No.") + ' Line No.:' + Format(RentalLine."Line No.") + 'Period:' + Format(RentalLine."Rental Start Date") + '...' + Format(RentalLine."Rental End Date");
-                Message(StartDateErr);
-            until RentalLine.Next() = 0;
+        if RentalLine.FindFirst() then begin
+            //StartDateErr := 'Item is reserved on Start Date.\' + 'Line No.:' + Format(RentalLine."Line No.") + Format(RentalLine."No.") + ' Doc.No.:' + Format(RentalLine."Document No.") + 'Period:' + Format(RentalLine."Rental Start Date") + '...' + Format(RentalLine."Rental End Date");
+            StartDateErr := 'Item is reserved on Start Date.\' + Format(RentalLine."Document No.") + ' ' + Format(RentalLine."Rental Start Date") + '..' + Format(RentalLine."Rental End Date");
+            //Error(StartDateErr);
             Rec."Rental Start Date" := 0D;
             Rec."Rental End Date" := 0D;
+            Message(StartDateErr);
         end;
-        //Reset();
     end;
 
+    local procedure CheckItemAvailableEndDate()
+    var
+        RentalLine: Record "Rental Line";
+        EndDateErr: Text;
+    begin
+        RentalLine.SetRange("No.", Rec."No.");
+        //RentalLine.SetFilter("Line No.", '<>%1', Rec."Line No.");
+        RentalLine.SetFilter("Rental Start Date", '<=%1', Rec."Rental End Date");
+        RentalLine.SetFilter("Rental end Date", '>=%1', Rec."Rental End Date");
+        if RentalLine.FindFirst() then begin
+            //EndDateErr := 'Item is reserved on End Date.\' + 'Line No.:' + Format(RentalLine."Line No.") + Format(RentalLine."No.") + ' Doc.No.:' + Format(RentalLine."Document No.") + 'Period:' + Format(RentalLine."Rental Start Date") + '...' + Format(RentalLine."Rental End Date");
+            EndDateErr := 'Item is reserved on End Date.\' + Format(RentalLine."Document No.") + ' ' + Format(RentalLine."Rental Start Date") + '..' + Format(RentalLine."Rental End Date");
+            //Error(EndDateErr);
+            Rec."Rental Start Date" := 0D;
+            Rec."Rental End Date" := 0D;
+            Message(EndDateErr);
+        end;
+        RentalLine.Reset();
+        RentalLine.SetRange("No.", Rec."No.");
+        //RentalLine.SetFilter("Line No.", '<>%1', Rec."Line No.");
+        RentalLine.SetFilter("Rental Start Date", '>=%1', Rec."Rental Start Date");
+        RentalLine.SetFilter("Rental end Date", '<=%1', Rec."Rental End Date");
+        if RentalLine.FindFirst() then begin
+            //EndDateErr := 'Item is reserved on End Date.\' + 'Line No.:' + Format(RentalLine."Line No.") + Format(RentalLine."No.") + ' Doc.No.:' + Format(RentalLine."Document No.") + 'Period:' + Format(RentalLine."Rental Start Date") + '...' + Format(RentalLine."Rental End Date");
+            EndDateErr := 'Item is reserved on End Date.\' + Format(RentalLine."Document No.") + ' ' + Format(RentalLine."Rental Start Date") + '..' + Format(RentalLine."Rental End Date");
+            //Error(EndDateErr);
+            Rec."Rental Start Date" := 0D;
+            Rec."Rental End Date" := 0D;
+            Message(EndDateErr);
+        end;
+
+    end;
+
+    local procedure CheckDate()
+    var
+        CheckDateErr: Label 'End Date < Start Date', Comment = 'End Date < Start Date';
+        CheckEndDateErr: Label 'Set Start Date first', Comment = 'Set Start Date first';
+    begin
+        if (Rec."Rental Start Date" = 0D) and (Rec."Rental End Date" <> 0D) then begin
+            Rec."Rental Start Date" := 0D;
+            Rec."Rental End Date" := 0D;
+            Message(CheckEndDateErr);
+        end;
+
+        if (Rec."Rental Start Date" <> 0D) and (Rec."Rental End Date" <> 0D) then
+            if Rec."Rental End Date" < Rec."Rental Start Date" then begin
+                //Error(CheckDateErr);
+                Rec."Rental Start Date" := 0D;
+                Rec."Rental End Date" := 0D;
+                Message(CheckDateErr);
+            end;
+    end;
 }
