@@ -39,6 +39,11 @@ pageextension 50202 "Rental Item Card Ext" extends "Item Card"
                     ToolTip = 'Specifies the value of the Visible on Rental Order field.';
                     ApplicationArea = All;
                 }
+                field("Rental Car Service duration"; Rec."Rental Car Service duration")
+                {
+                    ToolTip = 'Specifies the value of the Rental Item Service duration, days field.';
+                    ApplicationArea = All;
+                }
             }
         }
     }

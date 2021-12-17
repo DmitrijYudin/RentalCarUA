@@ -42,12 +42,21 @@ tableextension 50200 "Rental Item" extends Item
         }
         field(50240; "Rental Item Discount"; Decimal)
         {
-            Caption = 'Rental Item Discount %';
+            Caption = 'Item Discount %';
             DataClassification = CustomerContent;
             //TableRelation = "Price List Line"."Line Discount %";
             NotBlank = false;
             MinValue = 0;
             MaxValue = 100;
         }
+        field(50250; "Rental Car Service duration"; Integer)
+        {
+            Caption = 'Car Service duration, days';
+            DataClassification = CustomerContent;
+            // MinValue = 1;
+            InitValue = 1;
+            Editable = false;
+        }
+
     }
 }
