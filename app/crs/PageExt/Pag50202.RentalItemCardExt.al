@@ -47,5 +47,23 @@ pageextension 50202 "Rental Item Card Ext" extends "Item Card"
             }
         }
     }
+    actions
+    {
+        addlast(ItemActionGroup)
+        {
+            action("Rental XML import/export")
+            {
+                Caption = 'Export\Import XML Item Car';
+                ApplicationArea = All;
+                RunObject = xmlport "Rental Car XML";
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                PromotedOnly = true;
+                Image = Export;
+                ToolTip = 'Executes the Export\Import XML Item Car action.';
+            }
 
+        }
+    }
 }
