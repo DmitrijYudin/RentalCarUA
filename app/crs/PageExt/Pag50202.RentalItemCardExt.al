@@ -63,7 +63,6 @@ pageextension 50202 "Rental Item Card Ext" extends "Item Card"
                 Image = Export;
                 ToolTip = 'Executes the Export\Import XML Item Car action.';
             }
-
         }
     }
 }
