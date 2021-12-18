@@ -1,6 +1,6 @@
 pageextension 50202 "Rental Item Card Ext" extends "Item Card"
 {
-    Caption = 'Rental Item Card Ext';
+    Caption = 'Rental Card Card';
 
     layout
     {
@@ -49,19 +49,37 @@ pageextension 50202 "Rental Item Card Ext" extends "Item Card"
     }
     actions
     {
-        addlast(ItemActionGroup)
+
+        addfirst(ItemActionGroup)
         {
-            action("Rental XML import/export")
+
+            group("Rental Car XML import/export")
             {
-                Caption = 'Export\Import XML Item Car';
-                ApplicationArea = All;
-                RunObject = xmlport "Rental Car XML";
-                Promoted = true;
-                PromotedCategory = Process;
-                PromotedIsBig = true;
-                PromotedOnly = true;
-                Image = Export;
-                ToolTip = 'Executes the Export\Import XML Item Car action.';
+                Caption = 'Car XML import/export';
+                action("Rental Export Car")
+                {
+                    Caption = 'XML Export';
+                    ApplicationArea = All;
+                    RunObject = xmlport "Rental Car XML Export";
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+                    Image = Export;
+                    ToolTip = 'Executes the Export\Import XML Item Car action.';
+                }
+                action("Rental Import Car")
+                {
+                    Caption = 'XML Import';
+                    ApplicationArea = All;
+                    RunObject = xmlport "Rental Car XML Import";
+                    Promoted = true;
+                    PromotedCategory = Process;
+                    PromotedIsBig = true;
+                    PromotedOnly = true;
+                    Image = Import;
+                    ToolTip = 'Executes the Export\Import XML Item Car action.';
+                }
             }
         }
     }

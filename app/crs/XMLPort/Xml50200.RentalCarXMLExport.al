@@ -1,16 +1,16 @@
-xmlport 50200 "Rental Car XML"
+xmlport 50200 "Rental Car XML Export"
 {
-    Caption = 'Rental Car XML Import/Export';
+    Caption = 'Rental Car XML Export';
     FormatEvaluate = Xml;
     Encoding = UTF8;
-    // = Import;
+    Direction = Export;
     schema
     {
         textelement(RootNodeName)
         {
             tableelement(Item; Item)
             {
-                fieldelement(No2; Item."No. 2")
+                fieldelement(No; Item."No.")
                 {
                 }
                 fieldelement(RentalModel; Item."Rental Model")

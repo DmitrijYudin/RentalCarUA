@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<RootNodeName>
+  <Item>
+    <No>1025</No>
+    <RentalModel>M8</RentalModel>
+    <RentalVisible>true</RentalVisible>
+    <RentalColor>RED</RentalColor>
+    <RentalMileage>5325</RentalMileage>
+    <RentalManufactureyear>2020</RentalManufactureyear>
+    <RentalItemDiscount>2.00</RentalItemDiscount>
+    <RentalCarServiceduration>1</RentalCarServiceduration>
+  </Item>
+</RootNodeName>
