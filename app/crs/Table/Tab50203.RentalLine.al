@@ -97,6 +97,7 @@ table 50203 "Rental Line"
                 CheckItemSet();
                 CheckDate();
                 CheckItemAvailableStartDate();
+                CheckServiceDayStartDate();
                 CalcDuration();
                 CalcLineAmount();
                 ItemDiscAmount();
@@ -118,6 +119,7 @@ table 50203 "Rental Line"
                 CalcLineAmount();
                 ItemDiscAmount();
                 LineCost();
+                ServiceDay()
             end;
         }
         field(52; "Rental Duration"; Integer)
@@ -126,6 +128,12 @@ table 50203 "Rental Line"
             DataClassification = CustomerContent;
             Editable = false;
         }
+        field(60; "Rental Service Day"; Date)
+        {
+            Caption = 'Service Day';
+            Editable = false;
+        }
+
         field(103; "Line Amount"; Decimal)
         {
             AutoFormatType = 1;
@@ -189,6 +197,7 @@ table 50203 "Rental Line"
             Caption = 'Total Order Cost';
             Editable = false;
         }
+
     }
     keys
     {
@@ -200,6 +209,11 @@ table 50203 "Rental Line"
         {
             SumIndexFields = "Line Amount";
         }
+        key(key3; "No.", "Rental Service Day")
+        {
+            //SumIndexFields = "Line Amount";
+        }
+
     }
     local procedure CalcDuration()
     begin
@@ -211,6 +225,11 @@ table 50203 "Rental Line"
             "Rental Duration" := Rec."Rental End Date" - Rec."Rental Start Date" + 1;
         if rec."Rental End Date" = rec."Rental Start Date" then
             "Rental Duration" := 1;
+    end;
+
+    local procedure ServiceDay()
+    begin
+        Rec."Rental Service Day" := Rec."Rental End Date" + 1;
     end;
 
     local procedure CalcLineAmount()
@@ -238,7 +257,7 @@ table 50203 "Rental Line"
     //----------------  errors input checking -------------------
     local procedure CheckItemSet();
     var
-        CheckItemErr: Label 'Set Item first', Comment = 'Set Item first';
+        CheckItemErr: Label 'Set Car first', Comment = 'Set Car first';
     begin
         if Rec."No." = '' then
             Error(CheckItemErr);
@@ -250,15 +269,14 @@ table 50203 "Rental Line"
         StartDateErr: Text;
     begin
         RentalLine.SetRange("No.", Rec."No.");
-        //RentalLine.SetFilter("Line No.", '<>%1', Rec."Line No.");
         RentalLine.SetFilter("Rental Start Date", '<=%1', Rec."Rental Start Date");
         RentalLine.SetFilter("Rental end Date", '>=%1', Rec."Rental Start Date");
         if RentalLine.FindFirst() then begin
             //StartDateErr := 'Item is reserved on Start Date.\' + 'Line No.:' + Format(RentalLine."Line No.") + Format(RentalLine."No.") + ' Doc.No.:' + Format(RentalLine."Document No.") + 'Period:' + Format(RentalLine."Rental Start Date") + '...' + Format(RentalLine."Rental End Date");
-            StartDateErr := 'Item is reserved on Start Date.\' + Format(RentalLine."Document No.") + ' ' + Format(RentalLine."Rental Start Date") + '..' + Format(RentalLine."Rental End Date");
-            //Error(StartDateErr);
+            StartDateErr := 'On Start Date Car is reserved.\' + Format(RentalLine."Document No.") + ' ' + Format(RentalLine."Rental Start Date") + '..' + Format(RentalLine."Rental End Date") + '\End Servise Date: ' + Format(RentalLine."Rental Service Day");
             Rec."Rental Start Date" := 0D;
             Rec."Rental End Date" := 0D;
+            Rec."Rental Service Day" := 0D;
             Message(StartDateErr);
         end;
     end;
@@ -269,28 +287,26 @@ table 50203 "Rental Line"
         EndDateErr: Text;
     begin
         RentalLine.SetRange("No.", Rec."No.");
-        //RentalLine.SetFilter("Line No.", '<>%1', Rec."Line No.");
         RentalLine.SetFilter("Rental Start Date", '<=%1', Rec."Rental End Date");
         RentalLine.SetFilter("Rental end Date", '>=%1', Rec."Rental End Date");
         if RentalLine.FindFirst() then begin
             //EndDateErr := 'Item is reserved on End Date.\' + 'Line No.:' + Format(RentalLine."Line No.") + Format(RentalLine."No.") + ' Doc.No.:' + Format(RentalLine."Document No.") + 'Period:' + Format(RentalLine."Rental Start Date") + '...' + Format(RentalLine."Rental End Date");
-            EndDateErr := 'Item is reserved on End Date.\' + Format(RentalLine."Document No.") + ' ' + Format(RentalLine."Rental Start Date") + '..' + Format(RentalLine."Rental End Date");
-            //Error(EndDateErr);
+            EndDateErr := 'On End Date Car Item is reserved.\' + Format(RentalLine."Document No.") + ' ' + Format(RentalLine."Rental Start Date") + '..' + Format(RentalLine."Rental End Date") + '\End Servise Date: ' + Format(RentalLine."Rental Service Day");
             Rec."Rental Start Date" := 0D;
             Rec."Rental End Date" := 0D;
+            Rec."Rental Service Day" := 0D;
             Message(EndDateErr);
         end;
         RentalLine.Reset();
         RentalLine.SetRange("No.", Rec."No.");
-        //RentalLine.SetFilter("Line No.", '<>%1', Rec."Line No.");
         RentalLine.SetFilter("Rental Start Date", '>=%1', Rec."Rental Start Date");
         RentalLine.SetFilter("Rental end Date", '<=%1', Rec."Rental End Date");
         if RentalLine.FindFirst() then begin
             //EndDateErr := 'Item is reserved on End Date.\' + 'Line No.:' + Format(RentalLine."Line No.") + Format(RentalLine."No.") + ' Doc.No.:' + Format(RentalLine."Document No.") + 'Period:' + Format(RentalLine."Rental Start Date") + '...' + Format(RentalLine."Rental End Date");
-            EndDateErr := 'Item is reserved on End Date.\' + Format(RentalLine."Document No.") + ' ' + Format(RentalLine."Rental Start Date") + '..' + Format(RentalLine."Rental End Date");
-            //Error(EndDateErr);
+            EndDateErr := 'On End Date Car Item is reserved\' + Format(RentalLine."Document No.") + ' ' + Format(RentalLine."Rental Start Date") + '..' + Format(RentalLine."Rental End Date") + '\End Servise Date: ' + Format(RentalLine."Rental Service Day");
             Rec."Rental Start Date" := 0D;
             Rec."Rental End Date" := 0D;
+            Rec."Rental Service Day" := 0D;
             Message(EndDateErr);
         end;
 
@@ -304,6 +320,7 @@ table 50203 "Rental Line"
         if (Rec."Rental Start Date" = 0D) and (Rec."Rental End Date" <> 0D) then begin
             Rec."Rental Start Date" := 0D;
             Rec."Rental End Date" := 0D;
+            Rec."Rental Service Day" := 0D;
             Message(CheckEndDateErr);
         end;
 
@@ -312,7 +329,27 @@ table 50203 "Rental Line"
                 //Error(CheckDateErr);
                 Rec."Rental Start Date" := 0D;
                 Rec."Rental End Date" := 0D;
+                Rec."Rental Service Day" := 0D;
                 Message(CheckDateErr);
             end;
+    end;
+
+    local procedure CheckServiceDayStartDate()
+    var
+        RentalLine: Record "Rental Line";
+        StartDateErr: Text;
+    begin
+        RentalLine.Reset();
+        RentalLine.SetRange("No.", Rec."No.");
+        RentalLine.SetRange("Rental Service Day", Rec."Rental Start Date");
+        RentalLine.SetFilter(RentalLine."Rental Start Date", '<>%1', 0D);
+        if RentalLine.FindFirst() then begin
+            //StartDateErr := 'On Start Date Car Item is on service.\' + Format(RentalLine."Document No.") + ' ' + Format(RentalLine."Rental Start Date") + '..' + Format(RentalLine."Rental End Date") + '\Service Date: ' + Format(RentalLine."Rental Service Day");
+            StartDateErr := 'On Start Date Car Item is on service.\' + 'Line No.: ' + Format(RentalLine."Line No.") + '\Doc.No :' + Format(RentalLine."Document No.") + ' ' + Format(RentalLine."Rental Start Date") + '..' + Format(RentalLine."Rental End Date") + '\Service Date: ' + Format(RentalLine."Rental Service Day");
+            Rec."Rental Start Date" := 0D;
+            Rec."Rental End Date" := 0D;
+            Rec."Rental Service Day" := 0D;
+            Message(StartDateErr);
+        end;
     end;
 }

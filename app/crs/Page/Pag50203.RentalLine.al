@@ -81,6 +81,11 @@ page 50203 "Rental Line"
                     NotBlank = false;
                     ShowMandatory = true;
                 }
+                field("Rental Service Day"; Rec."Rental Service Day")
+                {
+                    ToolTip = 'Specifies the value of the Service Day field.';
+                    ApplicationArea = All;
+                }
                 field("Rental Duration"; Rec."Rental Duration")
                 {
                     ToolTip = 'Specifies the value of the Rental Duration field.';
