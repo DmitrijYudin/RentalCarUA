@@ -4,10 +4,6 @@ codeunit 50200 "Rental Mgt."
     var
         RentalLine: Record "Rental Line";
     begin
-        RentalLine.SetRange("Document No.", '');
-        RentalLine.DeleteAll(true);
-        RentalLine.Reset();
-
         RentalLine.SetRange("Document No.", DocumentNo);
         RentalLine.DeleteAll(true);
         RentalLine.Reset();

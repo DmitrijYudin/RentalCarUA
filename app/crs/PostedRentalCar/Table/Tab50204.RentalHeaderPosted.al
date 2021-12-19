@@ -1,6 +1,6 @@
-table 50202 "Rental Header"
+table 50204 "Rental Header Posted"
 {
-    Caption = 'Rental Header ';
+    Caption = 'Posted Rental Header ';
     DataClassification = CustomerContent;
 
     fields
@@ -117,6 +117,7 @@ table 50202 "Rental Header"
     //RentalMgt: Report "Rental Mgt.";
     begin
         RentalMgt.DeleteRentalLine(Rec."No.");
+        RentalMgt.DeleteRentalLine('');
     end;
 
     local procedure InitInsert()

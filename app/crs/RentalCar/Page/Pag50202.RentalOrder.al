@@ -6,6 +6,7 @@ page 50202 "Rental Order"
     UsageCategory = Lists;
     ApplicationArea = all;
     PromotedActionCategories = 'New,Process,Report,Approve,Release,Posting,Prepare,Order,Request Approval,History,Print/Send,Navigate';
+
     layout
     {
         area(content)
