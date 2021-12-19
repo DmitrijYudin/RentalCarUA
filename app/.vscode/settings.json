@@ -17,4 +17,9 @@
         // "${AppSourceCop}", // for ISV
         "${UICop}" 
     ],
+    // "cSpell.enableFiletypes": [
+    //     "al",
+    //     "alapp",
+    //     "gitignore"
+    // ],
 }
