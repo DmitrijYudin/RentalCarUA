@@ -1,20 +1,20 @@
 codeunit 50201 "Rental Post"
 {
-    procedure PostRadioShow(RentalHeader: Record "Rental Header")
+    procedure PostRentalCar(RentalHeader: Record "Rental Header")
     var
         RentalLine: Record "Rental Line";
-        RSHPostedRadioShow: Record "Rental Header Posted";
-        RSHPostedRadioShowdetail: Record "Rental Line Posted";
+        RentalHeaderPosted: Record "Rental Header Posted";
+        RentalLinePosted: Record "Rental Line Posted";
         OrderPostedMsg: Label 'The order is posted as number %1 and moved to the %2', Comment = '%1 = No, %2 = TableCaption';
     begin
-        RSHPostedRadioShow.TransferFields(RentalHeader);
-        //RSHPostedRadioShow."No." := '';
-        RSHPostedRadioShow.Insert(true);
+        RentalHeaderPosted.TransferFields(RentalHeader);
+        //RentalHeaderPosted."No." := '';
+        RentalHeaderPosted.Insert(true);
 
         RentalLine.SetRange("Document No.", RentalHeader."No.");
         if RentalLine.FindSet() then
             repeat
-                RSHPostedRadioShowdetail.Init();
+                RentalLinePosted.Init();
 
                 RentalLine.CalcFields("Total Lines Amount");
                 RentalLine.CalcFields("Total Lines Discount Amount");
@@ -22,45 +22,44 @@ codeunit 50201 "Rental Post"
                 RentalLine.CalcFields("Total Order Cost");
                 RentalLine.CalcFields("Rental Cust. Discount");
 
-                RSHPostedRadioShowdetail.TransferFields(RentalLine);
+                RentalLinePosted.TransferFields(RentalLine);
 
-                RSHPostedRadioShowdetail."Total Lines Amount" := RentalLine."Total Lines Amount";
-                RSHPostedRadioShowdetail."Total Lines Discount Amount" := RentalLine."Total Lines Discount Amount";
-                RSHPostedRadioShowdetail."Total Lines Qty." := RentalLine."Total Lines Qty.";
-                RSHPostedRadioShowdetail."Total Order Cost" := RentalLine."Total Order Cost";
-                RSHPostedRadioShowdetail."Rental Cust. Discount" := RentalLine."Rental Cust. Discount";
+                RentalLinePosted."Total Lines Amount" := RentalLine."Total Lines Amount";
+                RentalLinePosted."Total Lines Discount Amount" := RentalLine."Total Lines Discount Amount";
+                RentalLinePosted."Total Lines Qty." := RentalLine."Total Lines Qty.";
+                RentalLinePosted."Total Order Cost" := RentalLine."Total Order Cost";
+                RentalLinePosted."Rental Cust. Discount" := RentalLine."Rental Cust. Discount";
 
-                RSHPostedRadioShowdetail.Validate("Document No.", RSHPostedRadioShow."No.");
-                RSHPostedRadioShowdetail.Insert(true);
+                RentalLinePosted.Validate("Document No.", RentalHeaderPosted."No.");
+                RentalLinePosted.Insert(true);
             until RentalLine.Next() = 0;
 
-        PostRadioShowToGenJnl(RentalHeader, RSHPostedRadioShow."No.");
+        PostRentalCarToGenJnl(RentalHeader, RentalHeaderPosted."No.");
 
         RentalHeader.Delete(true);
         RentalLine.DeleteAll(true);
         Commit();
-        Message(OrderPostedMsg, RSHPostedRadioShow."No.", RSHPostedRadioShow.TableCaption());
+        Message(OrderPostedMsg, RentalHeaderPosted."No.", RentalHeaderPosted.TableCaption());
     end;
 
-    local procedure PostRadioShowToGenJnl(RentalHeader: Record "Rental Header"; DocumentNo_: Code[20])
+    local procedure PostRentalCarToGenJnl(RentalHeader: Record "Rental Header"; DocumentNo_: Code[20])
     var
         RentalLine: Record "Rental Line Posted";
     begin
-        RSHRadioShowSetup.Get();
-        RSHRadioShowSetup.TestField("Interest Account");
-        RSHRadioShowSetup.TestField("Gross Receivable");
-        RSHRadioShowSetup.TestField("Post. Jnl. Template Name");
-        RSHRadioShowSetup.TestField("Post. Jnl. Batch Name");
+        RentalSetup.Get();
+        RentalSetup.TestField("Interest Account");
+        RentalSetup.TestField("Gross Receivable");
+        RentalSetup.TestField("Post. Jnl. Template Name");
+        RentalSetup.TestField("Post. Jnl. Batch Name");
 
         PostingDate := WorkDate();
         DocumentDate := WorkDate();
         DocumentNo := DocumentNo_;
 
-
         RentalLine.SetRange("Document No.", RentalHeader."No.");
         if RentalLine.FindFirst() then begin
-            PostGenJnl(RSHRadioShowSetup."Interest Account", 'Radion Show Interest', RentalLine."Total Order Cost");
-            PostGenJnl(RSHRadioShowSetup."Gross Receivable", 'Radion Show Gross Receivable', -RentalLine."Total Order Cost");
+            PostGenJnl(RentalSetup."Interest Account", 'Rental Car Interest', RentalLine."Total Order Cost");
+            PostGenJnl(RentalSetup."Gross Receivable", 'Rental Car Gross Receivable', -RentalLine."Total Order Cost");
         end
         else
             Message('Posting error');
@@ -77,8 +76,8 @@ codeunit 50201 "Rental Post"
         end;
 
         GenJournalLine.Init();
-        GenJournalLine."Journal Template Name" := RSHRadioShowSetup."Post. Jnl. Template Name";
-        GenJournalLine."Journal Batch Name" := RSHRadioShowSetup."Post. Jnl. Batch Name";
+        GenJournalLine."Journal Template Name" := RentalSetup."Post. Jnl. Template Name";
+        GenJournalLine."Journal Batch Name" := RentalSetup."Post. Jnl. Batch Name";
         GenJournalLine."Account Type" := GenJournalLine."Account Type"::"G/L Account";
         GenJournalLine.Validate("Account No.", GLAccNo);
         GenJournalLine.Validate("Posting Date", PostingDate);
@@ -107,7 +106,7 @@ codeunit 50201 "Rental Post"
     end;
 
     var
-        RSHRadioShowSetup: Record "Rental Setup";
+        RentalSetup: Record "Rental Setup";
         GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line";
         PostingDate, DocumentDate : Date;
         DocumentNo: Code[20];

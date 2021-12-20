@@ -95,7 +95,7 @@ page 50202 "Rental Order"
                 var
                     RSHPostRadionShow: Codeunit "Rental Post";
                 begin
-                    RSHPostRadionShow.PostRadioShow(Rec);
+                    RSHPostRadionShow.PostRentalCar(Rec);
                 end;
             }
         }
