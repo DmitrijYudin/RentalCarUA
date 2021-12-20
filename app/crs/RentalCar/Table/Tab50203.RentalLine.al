@@ -30,8 +30,8 @@ table 50203 "Rental Line"
             trigger OnValidate()
             var
                 Item: Record Item;
-                RentalHeader: Record "Rental Header";
-                Customer: Record Customer;
+            // RentalHeader: Record "Rental Header";
+            // Customer: Record Customer;
             begin
                 if "No." <> '' then begin
                     Item.Get(Rec."No.");
@@ -45,8 +45,8 @@ table 50203 "Rental Line"
 
                     // RentalHeader.Get(Rec."No.");
                     // Rec.Validate("Customer No.", RentalHeader."Customer No.");
-                    Customer.Get(Rec."No.");
-                    Rec.Validate("Customer No.", Customer."No.");
+                    // Customer.Get(Rec."No.");
+                    // Rec.Validate("Customer No.", Customer."No.");
                 end;
                 SetDiscount();
             end;
@@ -207,8 +207,10 @@ table 50203 "Rental Line"
         field(290; "Customer No."; code[20])
         {
             Caption = 'Customer No.';
+            //TableRelation = "Rental Header"."Customer No." where("No." = field("Document No."));
+            FieldClass = FlowField;
+            CalcFormula = lookup("Rental Header"."Customer No." where("No." = field("Document No.")));
             Editable = false;
-            TableRelation = "Rental Header"."Customer No." where("No." = field("Document No."));
         }
     }
     keys

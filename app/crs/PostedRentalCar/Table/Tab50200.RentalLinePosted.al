@@ -200,9 +200,12 @@ table 50200 "Rental Line Posted"
         field(290; "Customer No."; code[20])
         {
             Caption = 'Customer No.';
+            //TableRelation = "Rental Header"."Customer No." where("No." = field("Document No."));
+            //FieldClass = FlowField;
+            //CalcFormula = lookup("Rental Header"."Customer No." where("No." = field("Document No.")));
             Editable = false;
-            TableRelation = "Rental Header"."Customer No." where("No." = field("Document No."));
         }
+
     }
     keys
     {

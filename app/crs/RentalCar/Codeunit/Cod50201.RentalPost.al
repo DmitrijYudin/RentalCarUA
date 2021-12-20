@@ -21,6 +21,7 @@ codeunit 50201 "Rental Post"
                 RentalLine.CalcFields("Total Lines Qty.");
                 RentalLine.CalcFields("Total Order Cost");
                 RentalLine.CalcFields("Rental Cust. Discount");
+                RentalLine.CalcFields("Customer No.");
 
                 RentalLinePosted.TransferFields(RentalLine);
 
@@ -29,6 +30,7 @@ codeunit 50201 "Rental Post"
                 RentalLinePosted."Total Lines Qty." := RentalLine."Total Lines Qty.";
                 RentalLinePosted."Total Order Cost" := RentalLine."Total Order Cost";
                 RentalLinePosted."Rental Cust. Discount" := RentalLine."Rental Cust. Discount";
+                RentalLinePosted."Customer No." := RentalLine."Customer No.";
 
                 RentalLinePosted.Validate("Document No.", RentalHeaderPosted."No.");
                 RentalLinePosted.Insert(true);
