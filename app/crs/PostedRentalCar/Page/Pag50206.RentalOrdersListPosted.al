@@ -3,7 +3,7 @@ page 50206 "Rental Orders List Posted"
     Caption = 'Rental Orders List Posted';
     ApplicationArea = All;
     PageType = List;
-    SourceTable = "Rental Header";
+    SourceTable = "Rental Header Posted";
     UsageCategory = Lists;
     CardPageId = "Rental Order";
     Editable = false;

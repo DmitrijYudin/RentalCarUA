@@ -16,17 +16,17 @@ table 50204 "Rental Header Posted"
             DataClassification = CustomerContent;
             NotBlank = true;
 
-            trigger OnValidate()
-            var
-                RentalSetup: Record "Rental Setup";
-                NoSeriesMgt: Codeunit NoSeriesManagement;
-            begin
-                if "No." <> xRec."No." then begin
-                    TestNoSeries(RentalSetup);
-                    NoSeriesMgt.TestManual(RentalSetup."Rental Nos.");
-                    "No. Series" := '';
-                end;
-            end;
+            // trigger OnValidate()
+            // var
+            //     RentalSetup: Record "Rental Setup";
+            //     NoSeriesMgt: Codeunit NoSeriesManagement;
+            // begin
+            //     if "No." <> xRec."No." then begin
+            //         TestNoSeries(RentalSetup);
+            //         NoSeriesMgt.TestManual(RentalSetup."Rental Nos.");
+            //         "No. Series" := '';
+            //     end;
+            // end;
         }
         field(7; "Bill-to Address"; Text[100])
         {

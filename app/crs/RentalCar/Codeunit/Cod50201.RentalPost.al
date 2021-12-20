@@ -2,20 +2,20 @@ codeunit 50201 "Rental Post"
 {
     procedure PostRadioShow(RSHRadioShow: Record "Rental Header")
     var
-        RSHRadioShowdetail: Record "RSH Radio Show detail";
-        RSHPostedRadioShow: Record "RSH Posted Radio Show";
-        RSHPostedRadioShowdetail: Record "RSH Posted Radio Show detail";
+        RSHRadioShowdetail: Record "Rental Line";
+        RSHPostedRadioShow: Record "Rental Header Posted";
+        RSHPostedRadioShowdetail: Record "Rental Line Posted";
         OrderPostedMsg: Label 'The order is posted as number %1 and moved to the %2', Comment = '%1 = No, %2 = TableCaption';
     begin
         RSHPostedRadioShow.TransferFields(RSHRadioShow);
-        RSHPostedRadioShow."No." := '';
+        //RSHPostedRadioShow."No." := '';
         RSHPostedRadioShow.Insert(true);
 
-        RSHRadioShowdetail.SetRange("Radion Show No.", RSHRadioShow."No.");
+        RSHRadioShowdetail.SetRange("Document No.", RSHRadioShow."No.");
         if RSHRadioShowdetail.FindSet() then
             repeat
                 RSHPostedRadioShowdetail.TransferFields(RSHRadioShowdetail);
-                RSHPostedRadioShowdetail.Validate("Radion Show No.", RSHPostedRadioShow."No.");
+                RSHPostedRadioShowdetail.Validate("Document No.", RSHPostedRadioShow."No.");
                 RSHPostedRadioShowdetail.Insert(true);
             until RSHRadioShowdetail.Next() = 0;
 
@@ -86,9 +86,9 @@ codeunit 50201 "Rental Post"
     //     GenJnlPostLine.Run(GenJournalLine);
     // end;
 
-    var
-        RSHRadioShowSetup: Record "RSH Radio Show Setup";
-        GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line";
-        PostingDate, DocumentDate : Date;
-        DocumentNo: Code[20];
+    // var
+    //     RSHRadioShowSetup: Record "Rental Setup";
+    //     GenJnlPostLine: Codeunit "Gen. Jnl.-Post Line";
+    //     PostingDate, DocumentDate : Date;
+    //     DocumentNo: Code[20];
 }

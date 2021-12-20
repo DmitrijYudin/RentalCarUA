@@ -93,7 +93,7 @@ page 50202 "Rental Order"
 
                 trigger OnAction()
                 var
-                    RSHPostRadionShow: Codeunit "RSH Post Radion Show";
+                    RSHPostRadionShow: Codeunit "Rental Post";
                 begin
                     RSHPostRadionShow.PostRadioShow(Rec);
                 end;
