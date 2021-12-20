@@ -11,7 +11,7 @@ table 50200 "Rental Line Posted"
         {
             Caption = 'Document No.';
             DataClassification = CustomerContent;
-            TableRelation = "Rental Header"."No.";
+            TableRelation = "Rental Header Posted"."No.";
             Editable = false;
         }
         field(4; "Line No."; Integer)
@@ -24,7 +24,7 @@ table 50200 "Rental Line Posted"
             Caption = 'No. ';
             DataClassification = CustomerContent;
             TableRelation = Item."No." where("Rental Visible" = const(true));
-            Editable = true;
+            Editable = false;
             //ValidateTableRelation = false;
 
             trigger OnValidate()
@@ -149,8 +149,8 @@ table 50200 "Rental Line Posted"
         field(220; "Rental Cust. Discount"; Decimal)
         {
             Caption = 'Rental Cust. Discount %';
-            FieldClass = FlowField;
-            CalcFormula = lookup("Rental Header"."Rental Cust. Discount" where("No." = field("Document No.")));
+            //FieldClass = FlowField;
+            //CalcFormula = lookup("Rental Header"."Rental Cust. Discount" where("No." = field("Document No.")));
             Editable = false;
         }
         field(222; "Line Discount Amount"; Decimal)
@@ -172,28 +172,28 @@ table 50200 "Rental Line Posted"
         field(250; "Total Lines Qty."; Integer)
         {
             Caption = 'Total Lines Qty.';
-            FieldClass = FlowField;
-            CalcFormula = count("Rental Line" where("Document No." = field("Document No.")));
+            //FieldClass = FlowField;
+            //CalcFormula = count("Rental Line" where("Document No." = field("Document No.")));
             Editable = false;
         }
         field(260; "Total Lines Amount"; Decimal)
         {
-            FieldClass = FlowField;
-            CalcFormula = sum("Rental Line"."Line Amount" where("Document No." = field("Document No.")));
+            //FieldClass = FlowField;
+            //CalcFormula = sum("Rental Line"."Line Amount" where("Document No." = field("Document No.")));
             Caption = 'Total Lines Amount';
             Editable = false;
         }
         field(270; "Total Lines Discount Amount"; Decimal)
         {
-            FieldClass = FlowField;
-            CalcFormula = sum("Rental Line"."Line Discount Amount" where("Document No." = field("Document No.")));
+            //FieldClass = FlowField;
+            //CalcFormula = sum("Rental Line"."Line Discount Amount" where("Document No." = field("Document No.")));
             Caption = 'Total Lines Discount Amount';
             Editable = false;
         }
         field(280; "Total Order Cost"; Decimal)
         {
-            FieldClass = FlowField;
-            CalcFormula = sum("Rental Line"."Line Cost" where("Document No." = field("Document No.")));
+            //FieldClass = FlowField;
+            //CalcFormula = sum("Rental Line"."Line Cost" where("Document No." = field("Document No.")));
             Caption = 'Total Order Cost';
             Editable = false;
         }

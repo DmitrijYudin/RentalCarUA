@@ -7,7 +7,7 @@ page 50200 "Rental Order Posted"
     ApplicationArea = all;
     DeleteAllowed = true;
     Editable = false;
-    
+
     layout
     {
         area(content)
@@ -25,7 +25,6 @@ page 50200 "Rental Order Posted"
                     ToolTip = 'Specifies the value of the Customer No. field.';
                     ApplicationArea = All;
                     NotBlank = false;
-                    ShowMandatory = true;
                     Visible = true;
                 }
 

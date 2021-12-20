@@ -2,12 +2,11 @@ page 50206 "Rental Orders List Posted"
 {
     Caption = 'Rental Orders List Posted';
     ApplicationArea = All;
+    UsageCategory = Lists;
     PageType = List;
     SourceTable = "Rental Header Posted";
-    UsageCategory = Lists;
-    CardPageId = "Rental Order";
+    CardPageId = "Rental Order Posted";
     Editable = false;
-    DeleteAllowed = true;
 
     layout
     {
