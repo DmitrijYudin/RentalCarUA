@@ -1,7 +1,7 @@
 page 50204 "Rental Line Posted"
 {
 
-    Caption = 'Rental Line Posted';
+    Caption = 'Posted Rental Line';
     PageType = ListPart;
     SourceTable = "Rental Line Posted";
     AutoSplitKey = true;

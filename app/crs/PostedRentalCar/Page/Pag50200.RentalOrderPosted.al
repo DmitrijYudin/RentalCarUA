@@ -1,6 +1,6 @@
 page 50200 "Rental Order Posted"
 {
-    Caption = 'Rental Order Posted';
+    Caption = 'Posted Rental Order';
     PageType = Card;
     SourceTable = "Rental Header Posted";
     UsageCategory = Lists;

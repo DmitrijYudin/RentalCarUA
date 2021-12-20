@@ -10,58 +10,6 @@
       <rd:DataSourceID>40237452-d669-47a6-8b8f-f7e182fb946e</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet_Result">
-      <Query>
-        <DataSourceName>DataSource</DataSourceName>
-        <CommandText />
-      </Query>
-      <Fields>
-        <Field Name="DocumentNo">
-          <DataField>DocumentNo</DataField>
-        </Field>
-        <Field Name="LineNo">
-          <DataField>LineNo</DataField>
-        </Field>
-        <Field Name="No">
-          <DataField>No</DataField>
-        </Field>
-        <Field Name="Description">
-          <DataField>Description</DataField>
-        </Field>
-        <Field Name="TotalOrderCost">
-          <DataField>TotalOrderCost</DataField>
-        </Field>
-        <Field Name="TotalOrderCostFormat">
-          <DataField>TotalOrderCostFormat</DataField>
-        </Field>
-        <Field Name="CustomerNo_RentalLinePosted">
-          <DataField>CustomerNo_RentalLinePosted</DataField>
-        </Field>
-        <Field Name="AppliedDiscount_RentalLinePosted">
-          <DataField>AppliedDiscount_RentalLinePosted</DataField>
-        </Field>
-        <Field Name="AppliedDiscount_RentalLinePostedFormat">
-          <DataField>AppliedDiscount_RentalLinePostedFormat</DataField>
-        </Field>
-        <Field Name="LineCost_RentalLinePosted">
-          <DataField>LineCost_RentalLinePosted</DataField>
-        </Field>
-        <Field Name="LineCost_RentalLinePostedFormat">
-          <DataField>LineCost_RentalLinePostedFormat</DataField>
-        </Field>
-        <Field Name="UnitPrice_RentalLinePosted">
-          <DataField>UnitPrice_RentalLinePosted</DataField>
-        </Field>
-        <Field Name="UnitPrice_RentalLinePostedFormat">
-          <DataField>UnitPrice_RentalLinePostedFormat</DataField>
-        </Field>
-        <Field Name="RentalModelLine_RentalLinePosted">
-          <DataField>RentalModelLine_RentalLinePosted</DataField>
-        </Field>
-      </Fields>
-    </DataSet>
-  </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
@@ -1098,4 +1046,56 @@ End Function
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="DocumentNo">
+          <DataField>DocumentNo</DataField>
+        </Field>
+        <Field Name="LineNo">
+          <DataField>LineNo</DataField>
+        </Field>
+        <Field Name="No">
+          <DataField>No</DataField>
+        </Field>
+        <Field Name="Description">
+          <DataField>Description</DataField>
+        </Field>
+        <Field Name="TotalOrderCost">
+          <DataField>TotalOrderCost</DataField>
+        </Field>
+        <Field Name="TotalOrderCostFormat">
+          <DataField>TotalOrderCostFormat</DataField>
+        </Field>
+        <Field Name="CustomerNo_RentalLinePosted">
+          <DataField>CustomerNo_RentalLinePosted</DataField>
+        </Field>
+        <Field Name="AppliedDiscount_RentalLinePosted">
+          <DataField>AppliedDiscount_RentalLinePosted</DataField>
+        </Field>
+        <Field Name="AppliedDiscount_RentalLinePostedFormat">
+          <DataField>AppliedDiscount_RentalLinePostedFormat</DataField>
+        </Field>
+        <Field Name="LineCost_RentalLinePosted">
+          <DataField>LineCost_RentalLinePosted</DataField>
+        </Field>
+        <Field Name="LineCost_RentalLinePostedFormat">
+          <DataField>LineCost_RentalLinePostedFormat</DataField>
+        </Field>
+        <Field Name="UnitPrice_RentalLinePosted">
+          <DataField>UnitPrice_RentalLinePosted</DataField>
+        </Field>
+        <Field Name="UnitPrice_RentalLinePostedFormat">
+          <DataField>UnitPrice_RentalLinePostedFormat</DataField>
+        </Field>
+        <Field Name="RentalModelLine_RentalLinePosted">
+          <DataField>RentalModelLine_RentalLinePosted</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
 </Report>

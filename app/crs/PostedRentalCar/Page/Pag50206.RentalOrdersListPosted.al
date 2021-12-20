@@ -1,6 +1,6 @@
 page 50206 "Rental Orders List Posted"
 {
-    Caption = 'Rental Orders List Posted';
+    Caption = 'Posted Rental Orders List';
     ApplicationArea = All;
     UsageCategory = Lists;
     PageType = List;
