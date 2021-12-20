@@ -30,6 +30,7 @@ table 50203 "Rental Line"
             trigger OnValidate()
             var
                 Item: Record Item;
+                RentalHeader: Record "Rental Header";
             begin
                 if "No." <> '' then begin
                     Item.Get(Rec."No.");
@@ -40,6 +41,9 @@ table 50203 "Rental Line"
                     Rec.Validate("Description", item."Description");
                     Rec.Validate("Unit Price", item."Unit Price");
                     Rec.Validate("Item Discount", item."Rental Item Discount");
+
+                    RentalHeader.Get();
+                    Rec.Validate("Customer No.", RentalHeader."Customer No.");
                 end;
                 SetDiscount();
             end;
@@ -197,7 +201,12 @@ table 50203 "Rental Line"
             Caption = 'Total Order Cost';
             Editable = false;
         }
-
+        field(290; "Customer No."; code[20])
+        {
+            Caption = 'Customer No.';
+            Editable = false;
+            TableRelation = "Rental Header"."Customer No." where("No." = field("Document No."));
+        }
     }
     keys
     {

@@ -197,7 +197,12 @@ table 50200 "Rental Line Posted"
             Caption = 'Total Order Cost';
             Editable = false;
         }
-
+        field(290; "Customer No."; code[20])
+        {
+            Caption = 'Customer No.';
+            Editable = false;
+            TableRelation = "Rental Header"."Customer No." where("No." = field("Document No."));
+        }
     }
     keys
     {

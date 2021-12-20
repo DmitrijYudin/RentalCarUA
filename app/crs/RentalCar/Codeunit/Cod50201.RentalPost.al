@@ -8,7 +8,7 @@ codeunit 50201 "Rental Post"
         OrderPostedMsg: Label 'The order is posted as number %1 and moved to the %2', Comment = '%1 = No, %2 = TableCaption';
     begin
         RentalHeaderPosted.TransferFields(RentalHeader);
-        //RentalHeaderPosted."No." := '';
+        //RentalHeaderPosted."No.rt" := '';
         RentalHeaderPosted.Insert(true);
 
         RentalLine.SetRange("Document No.", RentalHeader."No.");

@@ -155,6 +155,11 @@ page 50203 "Rental Line"
                     ToolTip = 'Specifies the value of the Total Lines Discount Amount field.';
                     ApplicationArea = All;
                 }
+                field("Customer No."; Rec."Customer No.")
+                {
+                    ToolTip = 'Specifies the value of the Customer No. field.';
+                    ApplicationArea = All;
+                }
             }
         }
     }
