@@ -1,7 +1,7 @@
 report 50201 "Rental Line Posted Report"
 {
     ApplicationArea = All;
-    Caption = 'Rental Line Posted Report';
+    Caption = 'Posted Report';
     UsageCategory = ReportsAndAnalysis;
     WordLayout = 'crs\Layout\RentalReport.docx';
     RDLCLayout = 'crs\Layout\RentalReport.rdlc';
