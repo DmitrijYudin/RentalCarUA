@@ -1,13 +1,13 @@
-page 50205 "Rental Orders List"
+page 50206 "Rental Orders List Posted"
 {
-
-    Caption = 'Rental Orders List';
+    Caption = 'Rental Orders List Posted';
     ApplicationArea = All;
     PageType = List;
     SourceTable = "Rental Header";
     UsageCategory = Lists;
     CardPageId = "Rental Order";
     Editable = false;
+    DeleteAllowed = true;
 
     layout
     {

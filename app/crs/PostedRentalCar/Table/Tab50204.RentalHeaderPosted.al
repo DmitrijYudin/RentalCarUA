@@ -1,6 +1,6 @@
 table 50204 "Rental Header Posted"
 {
-    Caption = 'Posted Rental Header ';
+    Caption = 'Rental Header Posted';
     DataClassification = CustomerContent;
 
     fields
@@ -14,6 +14,7 @@ table 50204 "Rental Header Posted"
         {
             Caption = 'No.', comment = 'ESP="Code."';
             DataClassification = CustomerContent;
+            NotBlank = true;
 
             trigger OnValidate()
             var

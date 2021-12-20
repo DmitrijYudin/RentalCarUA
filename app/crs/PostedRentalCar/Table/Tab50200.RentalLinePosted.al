@@ -1,6 +1,6 @@
 table 50200 "Rental Line Posted"
 {
-    Caption = 'Posted Rental Line ';
+    Caption = 'Rental Line Posted';
     DataClassification = CustomerContent;
     //LookupPageId = "Rental Line";
     //DrillDownPageId = "Rental Line";

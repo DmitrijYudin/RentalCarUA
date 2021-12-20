@@ -1,18 +1,20 @@
-page 50202 "Rental Order"
+page 50200 "Rental Order Posted"
 {
-    Caption = 'Rental Order';
+    Caption = 'Rental Order Posted';
     PageType = Card;
-    SourceTable = "Rental Header";
+    SourceTable = "Rental Header Posted";
     UsageCategory = Lists;
     ApplicationArea = all;
-    PromotedActionCategories = 'New,Process,Report,Approve,Release,Posting,Prepare,Order,Request Approval,History,Print/Send,Navigate';
-
+    DeleteAllowed = true;
+    Editable = false;
+    
     layout
     {
         area(content)
         {
             group(General)
             {
+                Editable = false;
                 field("No."; Rec."No.")
                 {
                     ToolTip = 'Specifies the value of the No. field.', Comment = 'ESP="Code."';
@@ -62,42 +64,15 @@ page 50202 "Rental Order"
                     ApplicationArea = All;
                 }
             }
-            part(SalesLines; "Rental Line")
+            part(SalesLines; "Rental Line Posted")
             {
                 ApplicationArea = All;
                 SubPageLink = "Document No." = FIELD("No.");
                 UpdatePropagation = Both;
-                Editable = true;
-                Enabled = (Rec."Customer No." <> '');
+                //Enabled = (Rec."Customer No." <> '');
+                Editable = false;
             }
         }
-    }
-    actions
-    {
-        area(Processing)
-        {
-            action(Post)
-            {
-                ApplicationArea = Basic, Suite;
-                Caption = 'P&ost';
-                Ellipsis = true;
-                Image = PostOrder;
-                Promoted = true;
-                PromotedCategory = Category6;
-                PromotedIsBig = true;
-                ShortCutKey = 'F9';
-                ToolTip = 'Finalize the document';
 
-                AboutTitle = 'Posting the order';
-                AboutText = 'Posting will post the quantities on the order.';
-
-                trigger OnAction()
-                var
-                    RSHPostRadionShow: Codeunit "RSH Post Radion Show";
-                begin
-                    RSHPostRadionShow.PostRadioShow(Rec);
-                end;
-            }
-        }
     }
 }
