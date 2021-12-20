@@ -74,4 +74,30 @@ page 50200 "Rental Order Posted"
         }
 
     }
+    actions
+    {
+        area(Processing)
+        {
+            action("Find Entries")
+            {
+
+                Caption = 'Find Entries';
+                ApplicationArea = All;
+                Promoted = true;
+                PromotedCategory = Process;
+                PromotedIsBig = true;
+                PromotedOnly = true;
+                Image = Export;
+                ToolTip = 'Executes the Find Entries action.';
+
+                trigger OnAction()
+                var
+                    RentalNavigate: Codeunit "Rental Navigate";
+
+                begin
+                    RentalNavigate.FindEntries(Rec."No.");
+                end;
+            }
+        }
+    }
 }
