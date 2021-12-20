@@ -159,6 +159,7 @@ page 50203 "Rental Line"
                 {
                     ToolTip = 'Specifies the value of the Customer No. field.';
                     ApplicationArea = All;
+                    Visible = true;
                 }
             }
         }
