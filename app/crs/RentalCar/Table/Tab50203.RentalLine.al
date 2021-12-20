@@ -31,6 +31,7 @@ table 50203 "Rental Line"
             var
                 Item: Record Item;
                 RentalHeader: Record "Rental Header";
+                Customer: Record Customer;
             begin
                 if "No." <> '' then begin
                     Item.Get(Rec."No.");
@@ -42,8 +43,10 @@ table 50203 "Rental Line"
                     Rec.Validate("Unit Price", item."Unit Price");
                     Rec.Validate("Item Discount", item."Rental Item Discount");
 
-                    RentalHeader.Get();
-                    Rec.Validate("Customer No.", RentalHeader."Customer No.");
+                    // RentalHeader.Get(Rec."No.");
+                    // Rec.Validate("Customer No.", RentalHeader."Customer No.");
+                    Customer.Get(Rec."No.");
+                    Rec.Validate("Customer No.", Customer."No.");
                 end;
                 SetDiscount();
             end;
